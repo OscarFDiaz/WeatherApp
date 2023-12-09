@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
+**PUNTOS A EVALUAR**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [ ] Tener conocimiento de react-router-dom.
+- [ ] Conocimientos de redux y redux persist.
+- [ ] Consumir API.
+- [ ] Diseño y estructuración de los archivos en el proyecto.
+- [ ] Reutilización de componentes.
+- [ ] Uso de Git
+- [ ] TypeScript
 
-Currently, two official plugins are available:
+**EXTRAS**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [ ] RTKQuery
+- [ ] Mantine / Material UI
+- [ ] Deploy.
+- [ ] Eslint.
+- [ ] Test
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**HOME PAGE**
 
-- Configure the top-level `parserOptions` property like this:
+Desarrollar una App en donde en el inicio de la app, se muestre una lista de usuarios que
+mostrará la siguiente información.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Nombre
+- Lat.
+- Long.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+En el mismo inicio, se tendrá un botón donde se desplegará un modal con un formulario
+que solicitará los datos necesarios para dar de alta a un nuevo usuario. Además de un
+botón para editar los usuarios y eliminarlos.
+
+---
+
+**USER PAGE**
+Al dar clic sobre un usuario, se redireccionará a una nueva página en donde se proveerá al
+usuario detalles del clima de su ciudad. Los detalles a mostrar serán:
+
+- Información del usuario.
+- Nombre de la ciudad.
+- Icono que haga referencia al clima actual.
+- Temperatura.
+- Humedad.
+- Velocidad del viento.
+- Pronóstico de los próximos 5 días. (O el máximo que permita la API que se esté
+  usando).

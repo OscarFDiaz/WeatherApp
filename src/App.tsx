@@ -1,20 +1,11 @@
-import { Container, Button } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
+import { Container } from '@mantine/core';
+import { Home } from './pages/Home/Home';
 
 function App() {
-  const handleOnClick = () => {
-    notifications.show({
-      title: 'Default notification',
-      message: 'Hey there, your code is awesome! 🤥',
-    });
-  };
-
   return (
     <>
-      <Container>
-        <Button variant="filled" onClick={handleOnClick}>
-          Mantine Test
-        </Button>
+      <Container size={'lg'}>
+        <Home />
       </Container>
     </>
   );

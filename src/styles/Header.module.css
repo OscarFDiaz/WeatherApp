@@ -1,0 +1,44 @@
+.header {
+  -webkit-backdrop-filter: blur(10.7px);
+  backdrop-filter: blur(10.7px);
+  background: rgba(255, 255, 255, 0);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-bottom: rem(32px);
+  padding-top: rem(16px);
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: rem(32px) 0 rem(16px);
+}
+
+.icon {
+  width: rem(22px);
+  height: rem(22px);
+}
+
+.dark {
+  @mixin dark {
+    display: none;
+  }
+
+  @mixin light {
+    display: block;
+  }
+}
+
+.light {
+  @mixin light {
+    display: none;
+  }
+
+  @mixin dark {
+    display: block;
+  }
+}
