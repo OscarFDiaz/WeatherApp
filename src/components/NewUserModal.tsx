@@ -1,6 +1,7 @@
 import { Button, Modal, TextInput, Flex } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconUser, IconWorldLatitude, IconWorldLongitude } from '@tabler/icons-react';
+import { Map, Marker } from 'pigeon-maps';
 
 interface NewUserModalProps {
   opened: boolean;
@@ -46,6 +47,7 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
           withAsterisk
           {...form.getInputProps('usuario')}
         />
+
         <TextInput
           description="Coordenadas Latitud"
           error="Completa este campo"
@@ -57,6 +59,7 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
           withAsterisk
           {...form.getInputProps('lat')}
         />
+
         <TextInput
           description="Coordenadas Longitud"
           error="Completa este campo"
@@ -68,6 +71,11 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
           withAsterisk
           {...form.getInputProps('long')}
         />
+
+        <Map height={300} defaultCenter={[20.6721374, -103.3258491]} defaultZoom={11}>
+          <Marker width={50} anchor={[20.6637578, -103.4333744]} />
+        </Map>
+
         <Button
           fw={400}
           fz={16}
