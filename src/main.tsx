@@ -12,7 +12,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <MantineProvider
       defaultColorScheme="dark"
-      theme={{ fontFamily: 'Poppins', primaryColor: 'red' }}
+      theme={{
+        fontFamily: 'Poppins',
+        primaryColor: 'blue',
+      }}
     >
       <Notifications />
       <App />
