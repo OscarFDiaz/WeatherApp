@@ -8,7 +8,13 @@ export const Footer = () => {
     <div className={styles.footer}>
       <div className={styles.inner}>
         <Image src={AppIcon} alt="WeatherIcon" style={{ width: '45px' }} />
-        <Title fz={18} ta={'left'} fw={500} order={1}>
+        <Title
+          fz={18}
+          ta={'left'}
+          fw={500}
+          order={1}
+          style={{ color: 'var(--mantine-color-bright)' }}
+        >
           WeatherApp / Inprodi ● Oscar Diaz
         </Title>
 

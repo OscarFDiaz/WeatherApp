@@ -10,7 +10,10 @@ import '@mantine/notifications/styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <MantineProvider defaultColorScheme="dark" theme={{ fontFamily: 'Poppins' }}>
+    <MantineProvider
+      defaultColorScheme="dark"
+      theme={{ fontFamily: 'Poppins', primaryColor: 'red' }}
+    >
       <Notifications />
       <App />
     </MantineProvider>

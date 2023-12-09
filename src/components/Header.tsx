@@ -32,10 +32,12 @@ export const Header = () => {
           wrap="nowrap"
         >
           <Image src={AppIcon} alt="WeatherIcon" style={{ width: '45px' }} />
-          <Title fz={24} fw={500} order={1} c={'white'} lightHidden>
-            WeatherApp / Inprodi ● Oscar Diaz
-          </Title>
-          <Title fz={24} fw={500} order={1} c={'black'} darkHidden>
+          <Title
+            fz={24}
+            fw={500}
+            order={1}
+            style={{ color: 'var(--mantine-color-bright)' }}
+          >
             WeatherApp / Inprodi ● Oscar Diaz
           </Title>
         </Flex>
