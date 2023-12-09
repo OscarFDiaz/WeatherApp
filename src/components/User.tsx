@@ -7,6 +7,7 @@ import {
   Paper,
   Text,
 } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
 import { IconMapPin, IconPencil, IconTrash } from '@tabler/icons-react';
 
 interface Props {
@@ -17,9 +18,15 @@ interface Props {
 }
 
 export const UserInfo = ({ avatar, name, lat, long }: Props) => {
+  const clicked = () => {
+    notifications.show({
+      title: 'Default notification',
+      message: `${name} ${lat} ${long}`,
+    });
+  };
   return (
     <>
-      <Paper radius="md" withBorder p="lg">
+      <Paper radius="md" withBorder p="lg" style={{ borderRadius: '25px' }}>
         <Avatar src={avatar} size={120} radius={120} mx="auto" />
         <Text ta="center" fz="lg" fw={500} mt="md">
           {name}
@@ -32,14 +39,26 @@ export const UserInfo = ({ avatar, name, lat, long }: Props) => {
         </Flex>
 
         <Flex gap={'xs'} align={'center'} mt={'lg'}>
-          <Button variant="default" fullWidth>
+          <Button variant="default" fullWidth radius={'xl'}>
             Detalles
           </Button>
           <ActionIconGroup>
-            <ActionIcon variant="subtle" color="gray" size={36}>
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              size={36}
+              radius={'xl'}
+              onClick={clicked}
+            >
               <IconPencil style={{ width: '1.5rem', height: '1.5rem' }} stroke={1.5} />
             </ActionIcon>
-            <ActionIcon variant="subtle" color="red" size={36}>
+            <ActionIcon
+              variant="subtle"
+              color="red"
+              size={36}
+              radius={'xl'}
+              onClick={clicked}
+            >
               <IconTrash style={{ width: '1.5rem', height: '1.5rem' }} stroke={1.5} />
             </ActionIcon>
           </ActionIconGroup>
