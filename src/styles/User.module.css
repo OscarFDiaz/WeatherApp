@@ -1,0 +1,14 @@
+.container > :not(:last-child) {
+  flex-grow: 1;
+}
+
+.container > :last-child {
+  max-width: 260px;
+  flex-grow: 1;
+}
+
+@media (max-width: 1037px) {
+  .container > :last-child {
+    max-width: none;
+  }
+}
