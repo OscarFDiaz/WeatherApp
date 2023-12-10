@@ -29,14 +29,22 @@ export const useFormAddUser = () => {
         }
         return value.trim().length < 1 ? 'El user debe de ser más largo' : null;
       },
-      lat: (value) =>
-        value.trim().length === 0
+      lat: (value) => {
+        if (!/^-?\d+(\.\d+)?$/.test(value)) {
+          return 'Aquí solo puede haber coordenadas';
+        }
+        return value.trim().length === 0
           ? 'Ingresa la latitud o mueve el marcador en el mapa'
-          : null,
-      long: (value) =>
-        value.trim().length === 0
+          : null;
+      },
+      long: (value) => {
+        if (!/^-?\d+(\.\d+)?$/.test(value)) {
+          return 'Aquí solo puede haber coordenadas';
+        }
+        return value.trim().length === 0
           ? 'Ingresa la longitud o mueve el marcador en el mapa'
-          : null,
+          : null;
+      },
       img: (value) => (value.trim().length === 0 ? 'Elige un avatar' : null),
     },
   });

@@ -1,8 +1,6 @@
 import { Flex, Grid, GridCol, Text } from '@mantine/core';
 import { UserInfo } from './User';
 
-import styles from '../styles/User.module.css';
-
 const data = [
   {
     id: 1,
@@ -52,7 +50,7 @@ export const UsersList = () => {
       <Text fz={24} mb={16}>
         Usuarios registrados
       </Text>
-      <Flex gap={'lg'} wrap={'wrap'} justify={'flex-start'} className={styles.container}>
+      <Flex gap={'lg'} wrap={'wrap'} justify={'flex-start'}>
         <Grid>
           {data.map((user) => (
             <GridCol key={user.id} span={{ xl: 4, md: 6, xs: 6, base: 12 }}>
