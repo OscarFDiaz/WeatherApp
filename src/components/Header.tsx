@@ -16,8 +16,7 @@ import cx from 'clsx';
 
 import AppIcon from '/vite.svg';
 import styles from '../styles/Header.module.css';
-import { NewUserModal } from './NewUserModal';
-// import classes from '../styles/FloatingLabelInput.css';
+import { NewUserModal } from './Modals/NewUserModal';
 
 export const Header = () => {
   // Manage dark-light theme

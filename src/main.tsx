@@ -7,6 +7,7 @@ import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/notifications/styles.css';
+import './styles/PigeoMapOverride.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
