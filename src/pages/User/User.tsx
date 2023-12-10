@@ -1,3 +1,9 @@
+import { Header } from '../../components/Header';
+
 export const User = () => {
-  return <div>User</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
