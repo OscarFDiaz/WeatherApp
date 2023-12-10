@@ -1,5 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Modal, TextInput, Flex, Text, Container } from '@mantine/core';
+import {
+  Button,
+  Modal,
+  TextInput,
+  Text,
+  Container,
+  Grid,
+  GridCol,
+  Space,
+} from '@mantine/core';
 import { IconUser, IconWorldLatitude, IconWorldLongitude } from '@tabler/icons-react';
 
 import { MapContainer } from '../MapContainer';
@@ -13,7 +22,7 @@ interface NewUserModalProps {
 
 export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
   const { anchor, form, handleDragEnd, handleSubmit } = useFormAddUser();
-
+  // direction={{ base: 'column', sm: 'row' }} gap={'lg'}
   return (
     <Modal
       centered
@@ -22,13 +31,17 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
       radius={'lg'}
       title="Añadir un nuevo usuario"
       size={'xl'}
+      overlayProps={{
+        backgroundOpacity: 0.5,
+        blur: 2,
+      }}
     >
-      <Container style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} p={0}>
-        <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-          <Flex direction={'column'} gap={'lg'}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        <Grid>
+          {/* Usuario y avatar */}
+          <GridCol span={6}>
             <TextInput
               description="Nombre del usuario"
-              error="Completa este campo"
               label="Usuario"
               leftSection={<IconUser />}
               placeholder="Oscar Diaz"
@@ -38,9 +51,17 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
               {...form.getInputProps('usuario')}
             />
 
+            <Space h={'lg'} />
+
+            <Container style={{ width: '100%', height: '100%' }} p={0}>
+              <ImageSelect form={form} />
+            </Container>
+          </GridCol>
+
+          {/* Latitud y longitud */}
+          <GridCol span={6}>
             <TextInput
               description="Coordenadas Latitud"
-              error="Completa este campo"
               label="Latitud"
               leftSection={<IconWorldLatitude />}
               placeholder="20.6637808"
@@ -50,9 +71,10 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
               {...form.getInputProps('lat')}
             />
 
+            <Space h={'lg'} />
+
             <TextInput
               description="Coordenadas Longitud"
-              error="Completa este campo"
               label="Longitud"
               leftSection={<IconWorldLongitude />}
               placeholder="-103.4315425"
@@ -61,27 +83,34 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
               withAsterisk
               {...form.getInputProps('long')}
             />
+          </GridCol>
 
+          {/* Mapa */}
+          <GridCol span={12}>
+            <Container style={{ height: '100%', minWidth: '100%' }} p={0} m={0}>
+              <Text c={'dimmed'} size="sm">
+                Posición en el mapa
+              </Text>
+              <MapContainer anchor={anchor} onDragEnd={handleDragEnd} />
+            </Container>
+          </GridCol>
+
+          {/* Botón */}
+          <GridCol span={12}>
             <Button
+              fullWidth
               fw={400}
               fz={16}
               radius={'xl'}
               size="44"
-              variant="filled"
               type="submit"
+              variant="filled"
             >
               Añadir usuario
             </Button>
-          </Flex>
-        </form>
-        <Container style={{ width: '100%', height: '100%' }}>
-          <ImageSelect form={form} />
-          <Text c={'dimmed'} size="sm">
-            Posición en el mapa
-          </Text>
-          <MapContainer anchor={anchor} onDragEnd={handleDragEnd} />
-        </Container>
-      </Container>
+          </GridCol>
+        </Grid>
+      </form>
     </Modal>
   );
 };

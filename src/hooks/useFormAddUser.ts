@@ -24,7 +24,7 @@ export const useFormAddUser = () => {
 
     validate: {
       usuario: (value) => {
-        if (!/^[a-zA-Z]+$/.test(value)) {
+        if (!/^[a-zA-Z\s]+$/.test(value)) {
           return 'El usuario solo puede contener letras';
         }
         return value.trim().length < 1 ? 'El usuario debe de ser más largo' : null;
@@ -58,6 +58,7 @@ export const useFormAddUser = () => {
   // Submit Form
   const handleSubmit = (values: FormValues) => {
     setSubmittedValues(JSON.stringify(values));
+    // console.log(values);
   };
 
   return {

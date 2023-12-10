@@ -61,22 +61,29 @@ interface Props {
 
 export const ImageSelect = ({ form }: Props) => {
   return (
-    <Flex align={'flex-end'} gap={'xs'} justify={'space-between'} mb={'lg'}>
+    <Flex align={'flex-end'} gap={'xs'} justify={'space-between'}>
       <Select
+        allowDeselect={false}
         checkIconPosition="right"
-        leftSection={<IconUserCircle />}
-        radius={'xl'}
-        size="md"
-        withAsterisk
-        withCheckIcon
-        label="Selecciona un avatar"
-        placeholder="Elige un avatar"
         description="Elige un avatar para el usuario"
         id="image-selector"
+        label="Selecciona un avatar"
+        leftSection={<IconUserCircle />}
+        placeholder="Elige un avatar"
+        radius={'xl'}
+        size="md"
+        style={{ flexGrow: 1 }}
+        withAsterisk
+        withCheckIcon
         data={options.map((option) => ({ value: option.value, label: option.label }))}
         {...form.getInputProps('img')}
       />
-      <Avatar src={form.values.img} alt="User avatar image" size={42} />
+      <Avatar
+        src={form.values.img}
+        alt="User avatar image"
+        size={89}
+        style={{ border: '1px solid var(--mantine-color-gray-4)' }}
+      />
     </Flex>
   );
 };

@@ -3,7 +3,6 @@ import {
   Button,
   Container,
   Flex,
-  Group,
   Image,
   Title,
   useComputedColorScheme,
@@ -35,52 +34,62 @@ export const Header = () => {
       <header className={styles.header}>
         <Container className={styles.inner} fluid>
           <Flex
-            mih={50}
-            gap="md"
-            justify="center"
-            align="center"
-            direction="row"
-            wrap="nowrap"
+            justify={{ lg: 'space-between', sm: 'space-between', xs: 'center' }}
+            align={'center'}
+            style={{ width: '100%' }}
+            direction={{ base: 'column', md: 'row' }}
+            gap={{ base: 'xl' }}
           >
-            <Image src={AppIcon} alt="WeatherIcon" style={{ width: '45px' }} />
-            <Title
-              fz={24}
-              fw={500}
-              order={1}
-              style={{ color: 'var(--mantine-color-bright)' }}
+            {/* Logo, appTitle */}
+            <Flex
+              mih={50}
+              gap="md"
+              justify="center"
+              align="center"
+              direction="row"
+              wrap="nowrap"
             >
-              WeatherApp / Inprodi ● Oscar Diaz
-            </Title>
-          </Flex>
+              <Image src={AppIcon} alt="WeatherIcon" style={{ width: '45px' }} />
+              <Title
+                fz={24}
+                fw={500}
+                order={1}
+                style={{ color: 'var(--mantine-color-bright)' }}
+              >
+                WeatherApp / Inprodi ● Oscar Diaz
+              </Title>
+            </Flex>
 
-          <Group gap={'xl'}>
-            <ActionIcon
-              radius={'xl'}
-              onClick={() =>
-                setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
-              }
-              variant="light"
-              size="xl"
-              aria-label="Toggle color scheme"
-            >
-              <IconSun className={cx(styles.icon, styles.light)} stroke={1.5} />
-              <IconMoonStars className={cx(styles.icon, styles.dark)} stroke={1.5} />
-            </ActionIcon>
-            <Button
-              variant="filled"
-              fz={18}
-              fw={400}
-              radius={'xl'}
-              size="44"
-              onClick={open}
-            >
-              <IconUserPlus
-                style={{ width: '1.5rem', height: '1.5rem', marginRight: '.5rem' }}
-                stroke={1.5}
-              />
-              Añadir usuario
-            </Button>
-          </Group>
+            {/* ThemeSelector, addUserButton */}
+            <Flex gap={{ lg: 'xl', md: 'lg', base: 'xs' }}>
+              <ActionIcon
+                radius={'xl'}
+                onClick={() =>
+                  setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')
+                }
+                variant="light"
+                size="xl"
+                aria-label="Toggle color scheme"
+              >
+                <IconSun className={cx(styles.icon, styles.light)} stroke={1.5} />
+                <IconMoonStars className={cx(styles.icon, styles.dark)} stroke={1.5} />
+              </ActionIcon>
+              <Button
+                variant="filled"
+                fz={18}
+                fw={400}
+                radius={'xl'}
+                size="44"
+                onClick={open}
+              >
+                <IconUserPlus
+                  style={{ width: '1.5rem', height: '1.5rem', marginRight: '.5rem' }}
+                  stroke={1.5}
+                />
+                Añadir usuario
+              </Button>
+            </Flex>
+          </Flex>
         </Container>
       </header>
     </>

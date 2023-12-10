@@ -14,6 +14,7 @@ export const MapContainer = ({ anchor, onDragEnd }: Props) => {
         borderRadius: '25px',
         overflow: 'hidden',
         height: '240px',
+        border: '1px solid var(--mantine-color-gray-4)',
       }}
     >
       <Map defaultCenter={[20.6721374, -103.3258491]} defaultZoom={11}>
