@@ -5,9 +5,10 @@ import pinMarker from '../assets/marker.svg';
 interface Props {
   anchor: Point | undefined;
   onDragEnd: ((anchor: Point) => void) | undefined;
+  defaultCenter: [number, number];
 }
 
-export const MapContainer = ({ anchor, onDragEnd }: Props) => {
+export const MapContainer = ({ anchor, onDragEnd, defaultCenter }: Props) => {
   return (
     <div
       style={{
@@ -17,7 +18,7 @@ export const MapContainer = ({ anchor, onDragEnd }: Props) => {
         border: '1px solid var(--mantine-color-gray-4)',
       }}
     >
-      <Map defaultCenter={[20.6721374, -103.3258491]} defaultZoom={11}>
+      <Map defaultCenter={defaultCenter} defaultZoom={11}>
         <Draggable offset={[60, 87]} anchor={anchor} onDragEnd={onDragEnd}>
           <img src={pinMarker} width={50} height={85} alt="Map pin marker" />
         </Draggable>

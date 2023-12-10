@@ -7,61 +7,84 @@ import {
   Paper,
   Text,
 } from '@mantine/core';
-import { notifications } from '@mantine/notifications';
+import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin, IconPencil, IconTrash } from '@tabler/icons-react';
+import { DeleteUserModal } from './Modals/DeleteUserModal';
+import { EditUserModal } from './Modals/EditUserModal';
 
 interface Props {
   avatar: string;
-  name: string;
+  user: string;
   lat: string;
   long: string;
+  id: number;
 }
 
-export const UserInfo = ({ avatar, name, lat, long }: Props) => {
-  const clicked = () => {
-    notifications.show({
-      title: 'Default notification',
-      message: `${name} ${lat} ${long}`,
-    });
-  };
-  return (
-    <Paper radius="md" withBorder p="lg" style={{ borderRadius: '25px' }}>
-      <Avatar src={avatar} size={120} radius={120} mx="auto" />
-      <Text ta="center" fz="lg" fw={500} mt="md">
-        {name}
-      </Text>
-      <Flex gap={'xs'} align={'center'}>
-        <IconMapPin style={{ width: '1rem', height: '1rem' }} stroke={1.5} />
-        <Text ta="center" c="dimmed" fz="sm">
-          {lat}, {long}
-        </Text>
-      </Flex>
+export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
+  // Manage modal
+  const [deleteOpened, { open: openDelete, close: closeDelete }] = useDisclosure(false);
+  const [editOpened, { open: openEdit, close: closeEdit }] = useDisclosure(false);
 
-      <Flex gap={'xs'} align={'center'} mt={'lg'}>
-        <Button variant="default" fullWidth radius={'xl'}>
-          Detalles
-        </Button>
-        <ActionIconGroup>
-          <ActionIcon
-            variant="subtle"
-            color="gray"
-            size={36}
-            radius={'xl'}
-            onClick={clicked}
-          >
-            <IconPencil style={{ width: '1.5rem', height: '1.5rem' }} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon
-            variant="subtle"
-            color="red"
-            size={36}
-            radius={'xl'}
-            onClick={clicked}
-          >
-            <IconTrash style={{ width: '1.5rem', height: '1.5rem' }} stroke={1.5} />
-          </ActionIcon>
-        </ActionIconGroup>
-      </Flex>
-    </Paper>
+  return (
+    <>
+      <DeleteUserModal
+        opened={deleteOpened}
+        onClose={closeDelete}
+        id={id}
+        avatar={avatar}
+        user={user}
+        lat={lat}
+        long={long}
+      />
+
+      <EditUserModal
+        opened={editOpened}
+        onClose={closeEdit}
+        id={id}
+        avatar={avatar}
+        user={user}
+        lat={lat}
+        long={long}
+      />
+
+      <Paper radius="md" withBorder p="lg" style={{ borderRadius: '25px' }}>
+        <Avatar src={avatar} size={120} radius={120} mx="auto" />
+        <Text ta="center" fz="lg" fw={500} mt="md">
+          {user}
+        </Text>
+        <Flex gap={'xs'} align={'center'} justify={'center'}>
+          <IconMapPin style={{ width: '1rem', height: '1rem' }} stroke={1.5} />
+          <Text ta="center" c="dimmed" fz="sm">
+            {lat}, {long}
+          </Text>
+        </Flex>
+
+        <Flex gap={'xs'} align={'center'} mt={'lg'}>
+          <Button variant="default" fullWidth radius={'xl'}>
+            Detalles
+          </Button>
+          <ActionIconGroup>
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              size={36}
+              radius={'xl'}
+              onClick={openEdit}
+            >
+              <IconPencil style={{ width: '1.5rem', height: '1.5rem' }} stroke={1.5} />
+            </ActionIcon>
+            <ActionIcon
+              variant="subtle"
+              color="red"
+              size={36}
+              radius={'xl'}
+              onClick={openDelete}
+            >
+              <IconTrash style={{ width: '1.5rem', height: '1.5rem' }} stroke={1.5} />
+            </ActionIcon>
+          </ActionIconGroup>
+        </Flex>
+      </Paper>
+    </>
   );
 };

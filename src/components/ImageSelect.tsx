@@ -56,7 +56,7 @@ const options = [
 ];
 
 interface Props {
-  form: UseFormReturnType<{ usuario: string; lat: string; long: string; img: string }>;
+  form: UseFormReturnType<{ user: string; lat: string; long: string; img: string }>;
 }
 
 export const ImageSelect = ({ form }: Props) => {

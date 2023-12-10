@@ -1,4 +1,4 @@
-import { Flex, Text } from '@mantine/core';
+import { Flex, Grid, GridCol, Text } from '@mantine/core';
 import { UserInfo } from './User';
 
 import styles from '../styles/User.module.css';
@@ -17,16 +17,16 @@ const data = [
     avatar:
       'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-7.png',
     name: 'Jill Jailbreaker',
-    lat: '30.3375651',
-    long: '-118.1726157',
+    lat: '32.62511910171682',
+    long: '-115.47119926336411',
   },
   {
     id: 3,
     avatar:
       'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-2.png',
     name: 'Henry Silkeater',
-    lat: '25.4622209',
-    long: '-102.4562324',
+    lat: '25.675913491548233',
+    long: '-100.31870493417969',
   },
   {
     id: 4,
@@ -41,8 +41,8 @@ const data = [
     avatar:
       'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-10.png',
     name: 'Jeremy Footviewer',
-    lat: '20.9861177',
-    long: '-89.7933357',
+    lat: '20.96239517597861',
+    long: '-89.62545087333984',
   },
 ];
 
@@ -53,15 +53,19 @@ export const UsersList = () => {
         Usuarios registrados
       </Text>
       <Flex gap={'lg'} wrap={'wrap'} justify={'flex-start'} className={styles.container}>
-        {data.map((user) => (
-          <UserInfo
-            key={user.id}
-            avatar={user.avatar}
-            name={user.name}
-            lat={user.lat}
-            long={user.long}
-          />
-        ))}
+        <Grid>
+          {data.map((user) => (
+            <GridCol key={user.id} span={{ xl: 4, md: 6, xs: 6, base: 12 }}>
+              <UserInfo
+                avatar={user.avatar}
+                user={user.name}
+                lat={user.lat}
+                long={user.long}
+                id={user.id}
+              />
+            </GridCol>
+          ))}
+        </Grid>
       </Flex>
     </>
   );

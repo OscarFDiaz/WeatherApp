@@ -2,7 +2,7 @@ import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
 
 interface FormValues {
-  usuario: string;
+  user: string;
   lat: string;
   long: string;
   img: string;
@@ -16,18 +16,18 @@ export const useFormAddUser = () => {
   const [, setSubmittedValues] = useState('');
   const form = useForm({
     initialValues: {
-      usuario: '',
+      user: '',
       lat: '',
       long: '',
       img: '',
     },
 
     validate: {
-      usuario: (value) => {
+      user: (value) => {
         if (!/^[a-zA-Z\s]+$/.test(value)) {
-          return 'El usuario solo puede contener letras';
+          return 'El user solo puede contener letras';
         }
-        return value.trim().length < 1 ? 'El usuario debe de ser más largo' : null;
+        return value.trim().length < 1 ? 'El user debe de ser más largo' : null;
       },
       lat: (value) =>
         value.trim().length === 0
@@ -68,5 +68,6 @@ export const useFormAddUser = () => {
     //* Methods
     handleDragEnd,
     handleSubmit,
+    setAnchor,
   };
 };
