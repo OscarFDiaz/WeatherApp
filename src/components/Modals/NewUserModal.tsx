@@ -39,7 +39,7 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
       <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Grid>
           {/* Usuario y avatar */}
-          <GridCol span={6}>
+          <GridCol span={{ sm: 6, xs: 12 }}>
             <TextInput
               description="Nombre del usuario"
               label="Usuario"
@@ -59,7 +59,7 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
           </GridCol>
 
           {/* Latitud y longitud */}
-          <GridCol span={6}>
+          <GridCol span={{ sm: 6, xs: 12 }}>
             <TextInput
               description="Coordenadas Latitud"
               label="Latitud"
