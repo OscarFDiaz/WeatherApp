@@ -10,3 +10,4 @@ export * from './Modals/EditUserModal';
 export * from './Modals/NewUserModal';
 export * from './ThemeSelector';
 export * from './User/HeaderUser';
+export * from './User/BackIcon';

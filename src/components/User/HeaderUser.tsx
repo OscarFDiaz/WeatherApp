@@ -2,20 +2,29 @@ import { Container, Flex, Image, Title } from '@mantine/core';
 
 import styles from '../../styles/Header.module.css';
 import AppIcon from '/vite.svg';
-import { ThemeSelector } from '..';
+import { BackIcon, ThemeSelector } from '..';
 
 export const HeaderUser = () => {
   return (
     <>
       <header className={styles.header}>
-        <Container className={styles.inner} fluid>
+        <Container className={styles.inner} pl={0} fluid>
           <Flex
-            justify={{ lg: 'space-between', sm: 'space-between', xs: 'center' }}
+            justify={{
+              lg: 'space-between',
+              sm: 'space-between',
+              xs: 'center',
+            }}
             align={'center'}
             style={{ width: '100%' }}
             direction={{ base: 'column', md: 'row' }}
             gap={{ base: 'xl' }}
           >
+            {/* ThemeSelector, addUserButton */}
+            <Flex gap={{ lg: 'xl', md: 'lg', base: 'xs' }}>
+              <BackIcon />
+              <ThemeSelector />
+            </Flex>
             {/* Logo, appTitle */}
             <Flex
               mih={50}
@@ -34,11 +43,6 @@ export const HeaderUser = () => {
               >
                 WeatherApp / Inprodi ● Oscar Diaz
               </Title>
-            </Flex>
-
-            {/* ThemeSelector, addUserButton */}
-            <Flex gap={{ lg: 'xl', md: 'lg', base: 'xs' }}>
-              <ThemeSelector />
             </Flex>
           </Flex>
         </Container>
