@@ -47,7 +47,7 @@ export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
         long={long}
       />
 
-      <Paper radius="md" withBorder p="lg" style={{ borderRadius: '25px' }}>
+      <Paper withBorder p="lg" style={{ borderRadius: '25px' }}>
         <Avatar src={avatar} size={120} radius={120} mx="auto" />
         <Text ta="center" fz="lg" fw={500} mt="md">
           {user}

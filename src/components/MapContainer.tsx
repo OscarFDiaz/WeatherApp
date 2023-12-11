@@ -4,17 +4,18 @@ import pinMarker from '../assets/marker.svg';
 
 interface Props {
   anchor: Point | undefined;
-  onDragEnd: ((anchor: Point) => void) | undefined;
+  onDragEnd?: ((anchor: Point) => void) | undefined;
   defaultCenter: [number, number];
+  height?: string;
 }
 
-export const MapContainer = ({ anchor, onDragEnd, defaultCenter }: Props) => {
+export const MapContainer = ({ anchor, onDragEnd, defaultCenter, height }: Props) => {
   return (
     <div
       style={{
         borderRadius: '25px',
         overflow: 'hidden',
-        height: '240px',
+        height: height || '240px',
         border: '1px solid var(--mantine-color-gray-4)',
       }}
     >
