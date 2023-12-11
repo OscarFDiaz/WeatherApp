@@ -1,5 +1,5 @@
 import { Flex, Grid, GridCol, Text } from '@mantine/core';
-import { UserInfo } from './User';
+import { UserInfo } from './UserInfo';
 
 const data = [
   {

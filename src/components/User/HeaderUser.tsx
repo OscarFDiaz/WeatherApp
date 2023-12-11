@@ -12,7 +12,6 @@ export const HeaderUser = () => {
           <Flex
             justify={{
               xl: 'space-between',
-              lg: 'space-between',
               sm: 'space-between',
               base: 'left',
             }}
