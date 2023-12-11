@@ -196,7 +196,7 @@ export const User = () => {
       {/* Contenedor principal */}
       <Grid pb={50}>
         {/* Día de hoy */}
-        <GridCol span={4}>
+        <GridCol span={{ xl: 4, lg: 4, md: 5, sm: 12, xs: 12 }}>
           <Text>Día de hoy</Text>
           <Box style={{ borderRadius: '25px' }} h={'100%'}>
             <BackgroundImage
@@ -314,11 +314,21 @@ export const User = () => {
             </BackgroundImage>
           </Box>
         </GridCol>
-        <GridCol span={8}>
-          {/* Next 5 days */}
+        {/* 5 días, user, map */}
+        <GridCol span={{ xl: 8, lg: 8, md: 7, sm: 12, xs: 12 }} mt={16}>
           <GridCol span={12} p={0} m={0}>
             <Text>Próximos 5 días</Text>
-            <Flex gap={'md'} direction={'row'}>
+            <Flex
+              gap={'md'}
+              direction={{
+                xl: 'row',
+                lg: 'row',
+                md: 'row',
+                sm: 'column',
+                xs: 'column',
+                base: 'column',
+              }}
+            >
               {Array.from(data.forecast.forecastday).map((item) => (
                 <Paper
                   radius="lg"
@@ -326,7 +336,12 @@ export const User = () => {
                   p="xs"
                   style={{ height: '100%', flexGrow: '1' }}
                 >
-                  <Flex direction={'column'} align={'center'} justify={'center'}>
+                  <Flex
+                    direction={'column'}
+                    align={'center'}
+                    justify={'center'}
+                    wrap={'wrap'}
+                  >
                     <Text>{item.date}</Text>
                     <Paper radius={'xl'}>
                       <Image src={item.day.condition.icon} h={64} w={64} />
@@ -340,23 +355,34 @@ export const User = () => {
           {/* User & Map */}
           <Grid mt={16}>
             {/* User */}
-            <GridCol span={6} p={8} m={0}>
+            <GridCol span={{ xl: 6, lg: 6, md: 6, sm: 12, xs: 12 }} p={8} m={0}>
               <Text>Infomación del usuario</Text>
-              <Paper withBorder p="lg" m={0} style={{ borderRadius: '25px' }} h={'100%'}>
+              <Paper
+                withBorder
+                p="lg"
+                m={0}
+                style={{
+                  borderRadius: '25px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+                h={'100%'}
+              >
                 <Avatar src={user.avatar} size={140} radius={120} mx="auto" />
                 <Text ta="center" fz="lg" fw={500} mt="md">
                   {user.name}
                 </Text>
                 <Flex gap={'xs'} align={'center'} justify={'center'}>
                   <IconMapPin style={{ width: '1rem', height: '1rem' }} stroke={1.5} />
-                  <Text ta="center" c="dimmed" fz="sm">
+                  <Text ta="center" c="dimmed" fz="sm" truncate={'end'}>
                     {lat}, {long}
                   </Text>
                 </Flex>
               </Paper>
             </GridCol>
             {/* Map */}
-            <GridCol span={6} m={0}>
+            <GridCol span={{ xl: 6, lg: 6, md: 6, sm: 12, xs: 12 }} m={0} mih={350}>
               <Text>Ubicación</Text>
               <MapContainer
                 height="100%"

@@ -11,13 +11,18 @@ export const HeaderUser = () => {
         <Container className={styles.inner} fluid>
           <Flex
             justify={{
+              xl: 'space-between',
               lg: 'space-between',
               sm: 'space-between',
-              xs: 'center',
+              base: 'left',
             }}
-            align={'center'}
+            align={{ base: 'flex-start' }}
             style={{ width: '100%' }}
-            direction={{ base: 'column', md: 'row' }}
+            direction={{
+              xl: 'row',
+              xs: 'row',
+              base: 'column-reverse',
+            }}
             gap={{ base: 'xl' }}
           >
             {/* ThemeSelector, addUserButton */}
