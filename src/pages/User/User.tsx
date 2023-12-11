@@ -6,8 +6,8 @@ import {
   Image,
   Paper,
   Text,
-  Group,
   BackgroundImage,
+  Box,
 } from '@mantine/core';
 import {
   IconDroplet,
@@ -193,12 +193,14 @@ export const User = () => {
   return (
     <>
       <HeaderUser />
+      {/* Contenedor principal */}
       <Grid pb={50}>
+        {/* Día de hoy */}
         <GridCol span={4}>
           <Text>Día de hoy</Text>
-          <Paper radius="md" withBorder style={{ borderRadius: '25px' }} h={'100%'}>
+          <Box style={{ borderRadius: '25px' }} h={'100%'}>
             <BackgroundImage
-              src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-6.png"
+              src="https://images.unsplash.com/photo-1532249991072-89f3389e8e80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFpbmluZyUyMG5pZ2h0fGVufDB8fDB8fHww"
               radius="lg"
               style={{ overflow: 'hidden' }}
               h={'100%'}
@@ -207,8 +209,8 @@ export const User = () => {
                 {/* Hora y ciudad */}
                 <GridCol span={12}>
                   <Flex direction={'row'} align={'center'} justify={'space-between'}>
-                    <Text>{data.location.localtime.split(' ')[0]}</Text>
-                    <Text>
+                    <Text c={'white'}>{data.location.localtime.split(' ')[0]}</Text>
+                    <Text c={'white'}>
                       {data.location.country}/{data.location.name}
                     </Text>
                   </Flex>
@@ -217,62 +219,100 @@ export const User = () => {
                 <GridCol span={12} mb={'xl'}>
                   {/* Temperatura - Icono*/}
                   <Flex direction={'row'} align={'center'} justify={'space-between'}>
-                    <Text size="72px" fw={600}>
+                    <Text c={'white'} size="72px" fw={600}>
                       {data.current.temp_c} °C
                     </Text>
                     <Paper radius={'xl'}>
                       <Image src={data.current.condition.icon} h={64} w={64} />
                     </Paper>
                   </Flex>
-                  <Text size="xl">{data.current.condition.text}</Text>
+                  <Text c={'gray'} size="xl">
+                    {data.current.condition.text}
+                  </Text>
                 </GridCol>
 
                 <Flex gap={'md'} direction={'column'}>
                   {/* Humedad */}
-                  <Group gap={'xs'}>
-                    <IconDroplet />
+                  <Box
+                    display={'flex'}
+                    style={{
+                      alignItems: 'center',
+                      gap: '1rem',
+                      borderRadius: '25px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                      backdropFilter: 'blur(20px)',
+                    }}
+                  >
+                    <IconDroplet color="white" />
                     <Text size="lg" c={'dimmed'}>
                       Humedad
                     </Text>
-                    <Text size="xl" fw={600}>
+                    <Text c={'white'} size="xl" fw={600}>
                       {data.current.humidity} %
                     </Text>
-                  </Group>
+                  </Box>
                   {/* Viento */}
-                  <Group gap={'xs'}>
-                    <IconWind />
+                  <Box
+                    display={'flex'}
+                    style={{
+                      alignItems: 'center',
+                      gap: '1rem',
+                      borderRadius: '25px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                      backdropFilter: 'blur(5px)',
+                    }}
+                  >
+                    <IconWind color="white" />
                     <Text size="lg" c={'dimmed'}>
                       Viento
                     </Text>
-                    <Text size="xl" fw={600}>
+                    <Text c={'white'} size="xl" fw={600}>
                       {data.current.wind_kph} KM/H - {data.current.wind_dir}/
                       {data.current.wind_degree} °
                     </Text>
-                  </Group>
+                  </Box>
                   {/* UV */}
-                  <Group gap={'xs'}>
-                    <IconUvIndex />
+                  <Box
+                    display={'flex'}
+                    style={{
+                      alignItems: 'center',
+                      gap: '1rem',
+                      borderRadius: '25px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                      backdropFilter: 'blur(5px)',
+                    }}
+                  >
+                    <IconUvIndex color="white" />
                     <Text size="lg" c={'dimmed'}>
                       UV Indice
                     </Text>
-                    <Text size="xl" fw={600}>
+                    <Text c={'white'} size="xl" fw={600}>
                       {data.current.uv}
                     </Text>
-                  </Group>
+                  </Box>
                   {/* UV */}
-                  <Group gap={'xs'}>
-                    <IconEyeCheck />
+                  <Box
+                    display={'flex'}
+                    style={{
+                      alignItems: 'center',
+                      gap: '1rem',
+                      borderRadius: '25px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                      backdropFilter: 'blur(5px)',
+                    }}
+                  >
+                    <IconEyeCheck color="white" />
                     <Text size="lg" c={'dimmed'}>
                       Visibilidad
                     </Text>
-                    <Text size="xl" fw={600}>
+                    <Text c={'white'} size="xl" fw={600}>
                       {data.current.vis_km} KM
                     </Text>
-                  </Group>
+                  </Box>
                 </Flex>
               </Grid>
             </BackgroundImage>
-          </Paper>
+          </Box>
         </GridCol>
         <GridCol span={8}>
           {/* Next 5 days */}

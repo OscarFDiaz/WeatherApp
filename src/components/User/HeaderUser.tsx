@@ -8,7 +8,7 @@ export const HeaderUser = () => {
   return (
     <>
       <header className={styles.header}>
-        <Container className={styles.inner} pl={0} fluid>
+        <Container className={styles.inner} fluid>
           <Flex
             justify={{
               lg: 'space-between',
