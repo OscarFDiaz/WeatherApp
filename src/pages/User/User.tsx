@@ -9,7 +9,6 @@ import {
   Group,
   BackgroundImage,
 } from '@mantine/core';
-import { MapContainer } from '../../components/MapContainer';
 import {
   IconDroplet,
   IconEyeCheck,
@@ -17,8 +16,7 @@ import {
   IconUvIndex,
   IconWind,
 } from '@tabler/icons-react';
-import { HeaderUser } from '../../components/HeaderUser';
-import { Footer } from '../../components/Footer';
+import { Footer, HeaderUser, MapContainer } from '../../components';
 
 const data = {
   location: {

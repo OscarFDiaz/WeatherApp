@@ -18,7 +18,7 @@ import {
   IconWorldLongitude,
 } from '@tabler/icons-react';
 import { useFormAddUser } from '../../hooks/useFormAddUser';
-import { ImageSelect } from '../ImageSelect';
+import { ImageSelect } from '../Home/ImageSelect';
 import { MapContainer } from '../MapContainer';
 import { useEffect } from 'react';
 

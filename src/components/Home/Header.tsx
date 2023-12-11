@@ -1,10 +1,18 @@
 import { Container, Flex, Image, Title } from '@mantine/core';
-import styles from '../styles/Header.module.css';
+import { useDisclosure } from '@mantine/hooks';
+
 import AppIcon from '/vite.svg';
-import { ThemeSelector } from './ThemeSelector';
-export const HeaderUser = () => {
+import styles from '../../styles/Header.module.css';
+import { AddUserButton, NewUserModal, ThemeSelector } from '..';
+
+export const Header = () => {
+  // Manage modal
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <>
+      <NewUserModal opened={opened} onClose={close} />
+
       <header className={styles.header}>
         <Container className={styles.inner} fluid>
           <Flex
@@ -37,6 +45,7 @@ export const HeaderUser = () => {
             {/* ThemeSelector, addUserButton */}
             <Flex gap={{ lg: 'xl', md: 'lg', base: 'xs' }}>
               <ThemeSelector />
+              <AddUserButton onClick={open} />
             </Flex>
           </Flex>
         </Container>

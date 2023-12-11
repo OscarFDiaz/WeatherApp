@@ -12,7 +12,7 @@ import {
 import { IconUser, IconWorldLatitude, IconWorldLongitude } from '@tabler/icons-react';
 
 import { MapContainer } from '../MapContainer';
-import { ImageSelect } from '../ImageSelect';
+import { ImageSelect } from '../Home/ImageSelect';
 import { useFormAddUser } from '../../hooks/useFormAddUser';
 
 interface NewUserModalProps {

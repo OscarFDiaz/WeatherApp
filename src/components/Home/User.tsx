@@ -9,8 +9,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin, IconPencil, IconTrash } from '@tabler/icons-react';
-import { DeleteUserModal } from './Modals/DeleteUserModal';
-import { EditUserModal } from './Modals/EditUserModal';
+import { DeleteUserModal, EditUserModal } from '..';
 
 interface Props {
   avatar: string;
