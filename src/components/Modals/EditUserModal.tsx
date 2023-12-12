@@ -14,7 +14,6 @@ import { notifications } from '@mantine/notifications';
 import {
   IconInfoCircle,
   IconUser,
-  IconUserEdit,
   IconWorldLatitude,
   IconWorldLongitude,
 } from '@tabler/icons-react';
@@ -49,17 +48,19 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
     });
   };
 
-  const handleSubmitEdit = () => {
-    onClose();
-    notifications.show({
-      title: '¡Cambios guardados!',
-      color: 'green',
-      message: 'Los cambios realizados han sido guardados.',
-      icon: <IconUserEdit style={{ width: rem(20), height: rem(20) }} />,
-      withBorder: true,
-      style: { borderRadius: '50px' },
-    });
-  };
+  // Effect to close the modal when the form is valid
+
+  // const handleSubmitEdit = () => {
+  //   onClose();
+  //   notifications.show({
+  //     title: '¡Cambios guardados!',
+  //     color: 'green',
+  //     message: 'Los cambios realizados han sido guardados.',
+  //     icon: <IconUserEdit style={{ width: rem(20), height: rem(20) }} />,
+  //     withBorder: true,
+  //     style: { borderRadius: '50px' },
+  //   });
+  // };
 
   return (
     <Modal
@@ -153,7 +154,6 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
               size="44"
               variant="filled"
               type="submit"
-              onClick={handleSubmitEdit}
             >
               Guardar cambios
             </Button>
