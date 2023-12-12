@@ -20,6 +20,7 @@ import {
 import { useFormAddUser } from '../../hooks/useFormAddUser';
 import { ImageSelect, MapContainer } from '..';
 import { notifications } from '@mantine/notifications';
+import { IFormValues } from '../../interfaces/IFormValues';
 
 interface INewUserModal {
   opened: boolean;
@@ -29,16 +30,23 @@ interface INewUserModal {
 export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
   const { anchor, form, handleDragEnd, handleSubmit } = useFormAddUser();
 
-  const handleSubmitUser = () => {
-    onClose();
-    notifications.show({
-      title: '¡Usuario agregado!',
-      color: 'green',
-      message: 'Los cambios realizados han sido guardados.',
-      icon: <IconUserPlus style={{ width: rem(20), height: rem(20) }} />,
-      withBorder: true,
-      style: { borderRadius: '50px' },
-    });
+  // Func to close the modal when the form is valid
+  const handleSubmitUser = (values: IFormValues) => {
+    // Call the hook to update redux
+    handleSubmit(values);
+
+    const isFormValid = form.isValid();
+    if (isFormValid) {
+      onClose();
+      notifications.show({
+        title: '¡Usuario agregado!',
+        color: 'green',
+        message: 'Los cambios realizados han sido guardados.',
+        icon: <IconUserPlus style={{ width: rem(20), height: rem(20) }} />,
+        withBorder: true,
+        style: { borderRadius: '50px' },
+      });
+    }
   };
 
   return (
@@ -54,7 +62,7 @@ export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
         blur: 2,
       }}
     >
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+      <form onSubmit={form.onSubmit((values) => handleSubmitUser(values))}>
         <Grid>
           {/* Usuario y avatar */}
           <GridCol span={{ sm: 6, xs: 12 }}>
@@ -127,7 +135,6 @@ export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
               size="44"
               type="submit"
               variant="filled"
-              onClick={handleSubmitUser}
             >
               Añadir usuario
             </Button>

@@ -62,7 +62,7 @@ export const Today = ({ weatherInfo }: TodayProps) => {
             <GridCol span={12}>
               <Flex direction={'row'} align={'center'} justify={'space-between'}>
                 <Text c={'white'}>{weatherInfo.location.localtime.split(' ')[0]}</Text>
-                <Text c={'white'}>
+                <Text c={'white'} ta={'end'}>
                   {weatherInfo.location.country}/{weatherInfo.location.name}
                 </Text>
               </Flex>

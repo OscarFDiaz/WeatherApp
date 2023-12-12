@@ -51,7 +51,7 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
     });
   };
 
-  // Effect to close the modal when the form is valid
+  // Func to close the modal when the form is valid
   const handleSubmit = (values: IFormValues) => {
     // Call the hook to update redux
     handleEditSubmit(values, id);
