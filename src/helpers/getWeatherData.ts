@@ -10,7 +10,7 @@ interface Props {
 
 export const getWeatherData = async ({ lat, long }: Props) => {
   const { VITE_APIKEY } = getEnvironments();
-  const url = `http://api.weatherapi.com/v1/forecast.json?key=${VITE_APIKEY}&q=${lat},${long}&days=5&aqi=no&alerts=no`;
+  const url = `https://api.weatherapi.com/v1/forecast.json?key=${VITE_APIKEY}&q=${lat},${long}&days=5&aqi=no&alerts=no`;
 
   try {
     const response = await axios.get(url, {
