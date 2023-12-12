@@ -1,8 +1,8 @@
 import { Flex, GridCol, Image, Paper, Text } from '@mantine/core';
-import { WeatherInterface } from '../../interfaces/WeatherInterface';
+import { IWeather } from '../../interfaces/IWeather';
 
 interface ForecastProps {
-  weatherInfo: WeatherInterface;
+  weatherInfo: IWeather;
 }
 
 export const Forecast = ({ weatherInfo }: ForecastProps) => {

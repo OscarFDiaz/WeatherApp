@@ -8,20 +8,38 @@ import {
   Grid,
   GridCol,
   Space,
+  rem,
 } from '@mantine/core';
-import { IconUser, IconWorldLatitude, IconWorldLongitude } from '@tabler/icons-react';
+import {
+  IconUser,
+  IconUserPlus,
+  IconWorldLatitude,
+  IconWorldLongitude,
+} from '@tabler/icons-react';
 
-import { MapContainer } from '../MapContainer';
-import { ImageSelect } from '../Home/ImageSelect';
 import { useFormAddUser } from '../../hooks/useFormAddUser';
+import { ImageSelect, MapContainer } from '..';
+import { notifications } from '@mantine/notifications';
 
-interface NewUserModalProps {
+interface INewUserModal {
   opened: boolean;
   onClose: () => void;
 }
 
-export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
+export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
   const { anchor, form, handleDragEnd, handleSubmit } = useFormAddUser();
+
+  const handleSubmitUser = () => {
+    onClose();
+    notifications.show({
+      title: '¡Usuario agregado!',
+      color: 'green',
+      message: 'Los cambios realizados han sido guardados.',
+      icon: <IconUserPlus style={{ width: rem(20), height: rem(20) }} />,
+      withBorder: true,
+      style: { borderRadius: '50px' },
+    });
+  };
 
   return (
     <Modal
@@ -48,7 +66,7 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
               radius={'xl'}
               size="md"
               withAsterisk
-              {...form.getInputProps('user')}
+              {...form.getInputProps('name')}
             />
 
             <Space h={'lg'} />
@@ -109,6 +127,7 @@ export const NewUserModal = ({ opened, onClose }: NewUserModalProps) => {
               size="44"
               type="submit"
               variant="filled"
+              onClick={handleSubmitUser}
             >
               Añadir usuario
             </Button>

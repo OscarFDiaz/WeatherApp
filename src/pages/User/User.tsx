@@ -1,6 +1,6 @@
 import { Footer, HeaderUser } from '../../components';
 import { weatherData } from '../../data/weatherData';
-import { WeatherInterface } from '../../interfaces/WeatherInterface';
+import { IWeather } from '../../interfaces/IWeather';
 import { UserDetailsLayout } from '../../layout';
 
 export const User = () => {
@@ -22,7 +22,7 @@ export const User = () => {
   //   fetchData();
   // }, []);
 
-  const weatherInfo: WeatherInterface = weatherData;
+  const weatherInfo: IWeather = weatherData;
 
   return (
     <>

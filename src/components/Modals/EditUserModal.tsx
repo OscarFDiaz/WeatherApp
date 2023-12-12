@@ -14,6 +14,7 @@ import { notifications } from '@mantine/notifications';
 import {
   IconInfoCircle,
   IconUser,
+  IconUserEdit,
   IconWorldLatitude,
   IconWorldLongitude,
 } from '@tabler/icons-react';
@@ -21,34 +22,18 @@ import { useFormAddUser } from '../../hooks/useFormAddUser';
 import { ImageSelect } from '../Home/ImageSelect';
 import { MapContainer } from '../MapContainer';
 import { useEffect } from 'react';
+import { IEditUserModal } from '../../interfaces/IEditUserModal';
 
-interface EditUserModalProps {
-  opened: boolean;
-  onClose: () => void;
-  id: number;
-  avatar: string;
-  user: string;
-  lat: string;
-  long: string;
-}
+export const EditUserModal = ({ ...props }: IEditUserModal) => {
+  const { opened, onClose, avatar, id, lat, long, name } = props;
 
-const handleDeleteUser = (id: number) => {
-  notifications.show({
-    title: 'User deleted',
-    message: `${id}`,
-  });
-};
-
-export const EditUserModal = ({ ...props }: EditUserModalProps) => {
-  const { opened, onClose, avatar, id, lat, long, user } = props;
-
-  const { anchor, setAnchor, form, handleDragEnd, handleSubmit } = useFormAddUser();
+  const { anchor, setAnchor, form, handleDragEnd, handleEditSubmit } = useFormAddUser();
 
   useEffect(() => {
-    form.setFieldValue('img', avatar);
+    form.setFieldValue('avatar', avatar);
     form.setFieldValue('lat', lat);
     form.setFieldValue('long', long);
-    form.setFieldValue('user', user);
+    form.setFieldValue('name', name);
     setAnchor([Number(lat), Number(long)]);
   }, []);
 
@@ -59,6 +44,18 @@ export const EditUserModal = ({ ...props }: EditUserModalProps) => {
       color: 'yellow',
       message: 'Los cambios realizados se han descartado.',
       icon: <IconInfoCircle style={{ width: rem(20), height: rem(20) }} />,
+      withBorder: true,
+      style: { borderRadius: '50px' },
+    });
+  };
+
+  const handleSubmitEdit = () => {
+    onClose();
+    notifications.show({
+      title: '¡Cambios guardados!',
+      color: 'green',
+      message: 'Los cambios realizados han sido guardados.',
+      icon: <IconUserEdit style={{ width: rem(20), height: rem(20) }} />,
       withBorder: true,
       style: { borderRadius: '50px' },
     });
@@ -77,7 +74,7 @@ export const EditUserModal = ({ ...props }: EditUserModalProps) => {
         blur: 2,
       }}
     >
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+      <form onSubmit={form.onSubmit((values) => handleEditSubmit(values, id))}>
         <Grid>
           <GridCol span={12}>
             <Text ta={'left'} size="xl">
@@ -95,7 +92,7 @@ export const EditUserModal = ({ ...props }: EditUserModalProps) => {
               radius={'xl'}
               size="md"
               withAsterisk
-              {...form.getInputProps('user')}
+              {...form.getInputProps('name')}
             />
 
             <Space h={'lg'} />
@@ -155,7 +152,8 @@ export const EditUserModal = ({ ...props }: EditUserModalProps) => {
               radius={'xl'}
               size="44"
               variant="filled"
-              onClick={() => handleDeleteUser(id)}
+              type="submit"
+              onClick={handleSubmitEdit}
             >
               Guardar cambios
             </Button>

@@ -9,10 +9,10 @@ import {
   Text,
 } from '@mantine/core';
 import { IconDroplet, IconEyeCheck, IconUvIndex, IconWind } from '@tabler/icons-react';
-import { WeatherInterface } from '../../interfaces/WeatherInterface';
+import { IWeather } from '../../interfaces/IWeather';
 
 interface TodayProps {
-  weatherInfo: WeatherInterface;
+  weatherInfo: IWeather;
 }
 
 export const Today = ({ weatherInfo }: TodayProps) => {

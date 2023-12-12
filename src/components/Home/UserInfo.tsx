@@ -11,16 +11,9 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin, IconPencil, IconTrash } from '@tabler/icons-react';
 import { DeleteUserModal, EditUserModal } from '..';
 import { Link } from 'react-router-dom';
+import { User } from '../../interfaces/IUser';
 
-interface Props {
-  avatar: string;
-  user: string;
-  lat: string;
-  long: string;
-  id: number;
-}
-
-export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
+export const UserInfo = ({ avatar, name, lat, long, id }: User) => {
   // Manage modal
   const [deleteOpened, { open: openDelete, close: closeDelete }] = useDisclosure(false);
   const [editOpened, { open: openEdit, close: closeEdit }] = useDisclosure(false);
@@ -32,7 +25,7 @@ export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
         onClose={closeDelete}
         id={id}
         avatar={avatar}
-        user={user}
+        name={name}
         lat={lat}
         long={long}
       />
@@ -42,7 +35,7 @@ export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
         onClose={closeEdit}
         id={id}
         avatar={avatar}
-        user={user}
+        name={name}
         lat={lat}
         long={long}
       />
@@ -50,7 +43,7 @@ export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
       <Paper withBorder p="lg" style={{ borderRadius: '25px' }}>
         <Avatar src={avatar} size={120} radius={120} mx="auto" />
         <Text ta="center" fz="lg" fw={500} mt="md">
-          {user}
+          {name}
         </Text>
         <Flex gap={'xs'} align={'center'} justify={'center'}>
           <IconMapPin style={{ width: '1rem', height: '1rem' }} stroke={1.5} />

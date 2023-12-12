@@ -1,12 +1,9 @@
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
-
-interface FormValues {
-  user: string;
-  lat: string;
-  long: string;
-  img: string;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, updateUser } from '../redux/slices/userSlice';
+import { IFormValues } from '../interfaces/IFormValues';
+import { IUserSlice } from '../interfaces/IUserSlice';
 
 export const useFormAddUser = () => {
   // Map anchor
@@ -16,14 +13,14 @@ export const useFormAddUser = () => {
   const [, setSubmittedValues] = useState('');
   const form = useForm({
     initialValues: {
-      user: '',
+      name: '',
       lat: '',
       long: '',
-      img: '',
+      avatar: '',
     },
 
     validate: {
-      user: (value) => {
+      name: (value) => {
         if (!/^[a-zA-Z\s]+$/.test(value)) {
           return 'El user solo puede contener letras';
         }
@@ -45,7 +42,7 @@ export const useFormAddUser = () => {
           ? 'Ingresa la longitud o mueve el marcador en el mapa'
           : null;
       },
-      img: (value) => (value.trim().length === 0 ? 'Elige un avatar' : null),
+      avatar: (value) => (value.trim().length === 0 ? 'Elige un avatar' : null),
     },
   });
 
@@ -63,10 +60,26 @@ export const useFormAddUser = () => {
     setAnchor(newAnchor);
   };
 
-  // Submit Form
-  const handleSubmit = (values: FormValues) => {
+  // Submit New User Form
+  const dispatch = useDispatch();
+  const { idCount } = useSelector((state: IUserSlice) => state.user);
+  const handleSubmit = (values: IFormValues) => {
     setSubmittedValues(JSON.stringify(values));
-    // console.log(values);
+    const newData = {
+      id: idCount,
+      ...values,
+    };
+    dispatch(setUser(newData));
+  };
+
+  // Submit Edit Form
+  const handleEditSubmit = (values: IFormValues, id: number) => {
+    setSubmittedValues(JSON.stringify(values));
+    const newData = {
+      id: id,
+      ...values,
+    };
+    dispatch(updateUser(newData));
   };
 
   return {
@@ -76,6 +89,7 @@ export const useFormAddUser = () => {
     //* Methods
     handleDragEnd,
     handleSubmit,
+    handleEditSubmit,
     setAnchor,
   };
 };

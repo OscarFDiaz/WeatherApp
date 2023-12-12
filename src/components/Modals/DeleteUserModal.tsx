@@ -10,27 +10,14 @@ import {
   rem,
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { IconCheck, IconMapPin } from '@tabler/icons-react';
+import { IconCheck, IconMapPin, IconUserMinus } from '@tabler/icons-react';
+import { IDeleteUserModal } from '../../interfaces/IDeleteUserModal';
+import { useDispatch } from 'react-redux';
+import { deleteUserById } from '../../redux/slices/userSlice';
 
-interface DeleteUserModalProps {
-  opened: boolean;
-  onClose: () => void;
-  id: number;
-  avatar: string;
-  user: string;
-  lat: string;
-  long: string;
-}
-
-const handleDeleteUser = (id: number) => {
-  notifications.show({
-    title: 'User deleted',
-    message: `${id}`,
-  });
-};
-
-export const DeleteUserModal = ({ ...props }: DeleteUserModalProps) => {
-  const { opened, onClose, avatar, id, lat, long, user } = props;
+export const DeleteUserModal = ({ ...props }: IDeleteUserModal) => {
+  const { opened, onClose, avatar, id, lat, long, name } = props;
+  const dispatch = useDispatch();
 
   const handleKeepUser = () => {
     onClose();
@@ -39,6 +26,18 @@ export const DeleteUserModal = ({ ...props }: DeleteUserModalProps) => {
       color: 'green',
       message: 'El usuario sigue siendo parte de la lista. ¡Misión cumplida!',
       icon: <IconCheck style={{ width: rem(20), height: rem(20) }} />,
+      withBorder: true,
+      style: { borderRadius: '50px' },
+    });
+  };
+
+  const handleDeleteUser = (id: number) => {
+    dispatch(deleteUserById(id));
+    notifications.show({
+      title: '¡Usuario eliminado!',
+      color: 'green',
+      message: 'El usuario ya no sigue siendo parte de la lista.',
+      icon: <IconUserMinus style={{ width: rem(20), height: rem(20) }} />,
       withBorder: true,
       style: { borderRadius: '50px' },
     });
@@ -68,7 +67,7 @@ export const DeleteUserModal = ({ ...props }: DeleteUserModalProps) => {
           <Paper radius="md" withBorder p="lg" style={{ borderRadius: '25px' }}>
             <Avatar src={avatar} size={120} radius={120} mx="auto" />
             <Text ta="center" fz="lg" fw={500} mt="md">
-              {user}
+              {name}
             </Text>
             <Flex gap={'xs'} align={'center'} justify={'center'}>
               <IconMapPin style={{ width: '1rem', height: '1rem' }} stroke={1.5} />

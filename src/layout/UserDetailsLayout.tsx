@@ -1,9 +1,9 @@
 import { Grid, GridCol, Text } from '@mantine/core';
 import { Forecast, MapForecast, Today, UserForecast } from '../components';
-import { WeatherInterface } from '../interfaces/WeatherInterface';
+import { IWeather } from '../interfaces/IWeather';
 
 interface UserDetailsLayoutProps {
-  weatherInfo: WeatherInterface;
+  weatherInfo: IWeather;
 }
 
 export const UserDetailsLayout = ({ weatherInfo }: UserDetailsLayoutProps) => {
