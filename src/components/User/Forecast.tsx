@@ -2,10 +2,14 @@ import { Flex, GridCol, Image, Paper, Text } from '@mantine/core';
 import { IWeather } from '../../interfaces/IWeather';
 
 interface ForecastProps {
-  weatherInfo: IWeather;
+  weatherInfo: IWeather | undefined;
 }
 
 export const Forecast = ({ weatherInfo }: ForecastProps) => {
+  if (!weatherInfo) {
+    return <div>Cargando...</div>;
+  }
+
   return (
     <GridCol span={12} p={0} m={0}>
       <Text>Próximos 5 días</Text>
@@ -20,8 +24,14 @@ export const Forecast = ({ weatherInfo }: ForecastProps) => {
           base: 'column',
         }}
       >
-        {Array.from(weatherInfo.forecast.forecastday).map((item) => (
-          <Paper radius="lg" withBorder p="xs" style={{ height: '100%', flexGrow: '1' }}>
+        {weatherInfo.forecast.forecastday.map((item) => (
+          <Paper
+            key={item.date}
+            radius="lg"
+            withBorder
+            p="xs"
+            style={{ height: '100%', flexGrow: '1' }}
+          >
             <Flex direction={'column'} align={'center'} justify={'center'} wrap={'wrap'}>
               <Text>{item.date}</Text>
               <Paper radius={'xl'}>

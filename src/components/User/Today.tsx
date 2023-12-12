@@ -12,10 +12,14 @@ import { IconDroplet, IconEyeCheck, IconUvIndex, IconWind } from '@tabler/icons-
 import { IWeather } from '../../interfaces/IWeather';
 
 interface TodayProps {
-  weatherInfo: IWeather;
+  weatherInfo: IWeather | undefined;
 }
 
 export const Today = ({ weatherInfo }: TodayProps) => {
+  if (!weatherInfo) {
+    return <div>Cargando...</div>;
+  }
+
   return (
     <GridCol span={{ xl: 4, lg: 4, md: 5, sm: 12, xs: 12 }}>
       <Text>Día de hoy</Text>
