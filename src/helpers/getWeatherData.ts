@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { notifications } from '@mantine/notifications';
-import { getEnvironments } from './getEnviroments';
+// import { getEnvironments } from './getEnviroments';
 
-interface Props {
-  lat: string;
-  long: string;
-}
+// interface Props {
+//   lat: string;
+//   long: string;
+// }
 
-export const getWeatherData = async ({ lat, long }: Props) => {
+// export const getWeatherData = async ({ lat, long }: Props) => {
+export const getWeatherData = async () => {
   const url = 'https://rickandmortyapi.com/api';
   // const { VITE_APIKEY } = getEnvironments();
   // const url = `http://api.weatherapi.com/v1/forecast.json?key=${VITE_APIKEY}&q=${lat},${long}&days=5&aqi=no&alerts=no`;

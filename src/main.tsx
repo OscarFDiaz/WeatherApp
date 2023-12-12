@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-// import './index.css';
+import { HashRouter } from 'react-router-dom';
 
-import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+
 import './styles/PigeoMapOverride.css';
-import { BrowserRouter } from 'react-router-dom';
+import App from './App.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -19,10 +19,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         primaryColor: 'blue',
       }}
     >
-      <BrowserRouter>
+      <HashRouter>
         <Notifications />
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </MantineProvider>
   </React.StrictMode>,
 );
