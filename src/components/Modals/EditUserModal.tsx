@@ -14,6 +14,7 @@ import { notifications } from '@mantine/notifications';
 import {
   IconInfoCircle,
   IconUser,
+  IconUserEdit,
   IconWorldLatitude,
   IconWorldLongitude,
 } from '@tabler/icons-react';
@@ -22,12 +23,14 @@ import { ImageSelect } from '../Home/ImageSelect';
 import { MapContainer } from '../MapContainer';
 import { useEffect } from 'react';
 import { IEditUserModal } from '../../interfaces/IEditUserModal';
+import { IFormValues } from '../../interfaces/IFormValues';
 
 export const EditUserModal = ({ ...props }: IEditUserModal) => {
   const { opened, onClose, avatar, id, lat, long, name } = props;
 
   const { anchor, setAnchor, form, handleDragEnd, handleEditSubmit } = useFormAddUser();
 
+  // Set form with user data
   useEffect(() => {
     form.setFieldValue('avatar', avatar);
     form.setFieldValue('lat', lat);
@@ -49,18 +52,23 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
   };
 
   // Effect to close the modal when the form is valid
+  const handleSubmit = (values: IFormValues) => {
+    // Call the hook to update redux
+    handleEditSubmit(values, id);
 
-  // const handleSubmitEdit = () => {
-  //   onClose();
-  //   notifications.show({
-  //     title: '¡Cambios guardados!',
-  //     color: 'green',
-  //     message: 'Los cambios realizados han sido guardados.',
-  //     icon: <IconUserEdit style={{ width: rem(20), height: rem(20) }} />,
-  //     withBorder: true,
-  //     style: { borderRadius: '50px' },
-  //   });
-  // };
+    const isFormValid = form.isValid();
+    if (isFormValid) {
+      onClose();
+      notifications.show({
+        title: '¡Cambios guardados!',
+        color: 'green',
+        message: 'Los cambios realizados han sido guardados.',
+        icon: <IconUserEdit style={{ width: rem(20), height: rem(20) }} />,
+        withBorder: true,
+        style: { borderRadius: '50px' },
+      });
+    }
+  };
 
   return (
     <Modal
@@ -75,7 +83,7 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
         blur: 2,
       }}
     >
-      <form onSubmit={form.onSubmit((values) => handleEditSubmit(values, id))}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
         <Grid>
           <GridCol span={12}>
             <Text ta={'left'} size="xl">
@@ -165,7 +173,6 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
               fz={16}
               radius={'xl'}
               size="44"
-              type="submit"
               variant="light"
               onClick={handleDiscardChanges}
             >
