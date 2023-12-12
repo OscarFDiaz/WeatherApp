@@ -33,7 +33,7 @@ export const UserDetailsLayout = () => {
     };
 
     fetchData();
-  });
+  }, [lat, long, userID]);
 
   return (
     <>

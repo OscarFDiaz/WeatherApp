@@ -1,5 +1,6 @@
 import { Flex, GridCol, Image, Paper, Text } from '@mantine/core';
 import { IWeather } from '../../interfaces/IWeather';
+import { SkeletonForecastLayout } from '../../layout/SkeletonForecastLayout';
 
 interface ForecastProps {
   weatherInfo: IWeather | undefined;
@@ -7,7 +8,7 @@ interface ForecastProps {
 
 export const Forecast = ({ weatherInfo }: ForecastProps) => {
   if (!weatherInfo) {
-    return <div>Cargando...</div>;
+    return <SkeletonForecastLayout />;
   }
 
   return (
@@ -24,7 +25,7 @@ export const Forecast = ({ weatherInfo }: ForecastProps) => {
           base: 'column',
         }}
       >
-        {weatherInfo.forecast.forecastday.map((item) => (
+        {weatherInfo.forecast.forecastday.slice(1).map((item) => (
           <Paper
             key={item.date}
             radius="lg"

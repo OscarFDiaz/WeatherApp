@@ -10,6 +10,7 @@ import {
 } from '@mantine/core';
 import { IconDroplet, IconEyeCheck, IconUvIndex, IconWind } from '@tabler/icons-react';
 import { IWeather } from '../../interfaces/IWeather';
+import { SkeletonDayLayout } from '../../layout/SkeletonDayLayout';
 
 interface TodayProps {
   weatherInfo: IWeather | undefined;
@@ -17,7 +18,7 @@ interface TodayProps {
 
 export const Today = ({ weatherInfo }: TodayProps) => {
   if (!weatherInfo) {
-    return <div>Cargando...</div>;
+    return <SkeletonDayLayout />;
   }
 
   return (
