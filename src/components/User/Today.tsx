@@ -11,12 +11,38 @@ import {
 import { IconDroplet, IconEyeCheck, IconUvIndex, IconWind } from '@tabler/icons-react';
 import { IWeather } from '../../interfaces/IWeather';
 import { SkeletonDayLayout } from '../../layout/SkeletonDayLayout';
+import { useEffect, useState } from 'react';
 
 interface TodayProps {
   weatherInfo: IWeather | undefined;
 }
 
 export const Today = ({ weatherInfo }: TodayProps) => {
+  const [imageSRC, setImageSRC] = useState('https://i.imgur.com/38Ey9lL.jpg');
+
+  useEffect(() => {
+    const conditionsMap: Record<string, string> = {
+      cloudy: 'https://i.imgur.com/7hHoCj9.jpg',
+      sunny: 'https://i.imgur.com/ku5mifb.jpg',
+      clear: 'https://i.imgur.com/SYKakyW.jpg',
+      fog: 'https://i.imgur.com/pRwAZLs.jpg',
+      mist: 'https://i.imgur.com/pRwAZLs.jpg',
+      rain: 'https://i.imgur.com/D3B3Rkn.jpg',
+      snow: 'https://i.imgur.com/VzNafkc.jpg',
+    };
+
+    if (weatherInfo) {
+      const condition = weatherInfo.current.condition.text.toLowerCase();
+      const matchingCondition = Object.keys(conditionsMap).find((key) =>
+        condition.includes(key),
+      );
+
+      matchingCondition
+        ? setImageSRC(conditionsMap[matchingCondition])
+        : setImageSRC('https://i.imgur.com/38Ey9lL.jpg');
+    }
+  }, [weatherInfo]);
+
   if (!weatherInfo) {
     return <SkeletonDayLayout />;
   }
@@ -26,7 +52,7 @@ export const Today = ({ weatherInfo }: TodayProps) => {
       <Text>Día de hoy</Text>
       <Box style={{ borderRadius: '25px' }} h={'100%'}>
         <BackgroundImage
-          src="https://images.unsplash.com/photo-1532249991072-89f3389e8e80?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFpbmluZyUyMG5pZ2h0fGVufDB8fDB8fHww"
+          src={imageSRC}
           radius="lg"
           style={{ overflow: 'hidden' }}
           h={'100%'}
@@ -45,10 +71,10 @@ export const Today = ({ weatherInfo }: TodayProps) => {
             <GridCol span={12} mb={'xl'}>
               {/* Temperatura - Icono*/}
               <Flex direction={'row'} align={'center'} justify={'space-between'}>
-                <Text c={'white'} size="72px" fw={600}>
+                <Text c={'white'} size="64px" fw={600}>
                   {weatherInfo.current.temp_c} °C
                 </Text>
-                <Paper radius={'xl'}>
+                <Paper radius={'xl'} p={'xs'}>
                   <Image src={weatherInfo.current.condition.icon} h={64} w={64} />
                 </Paper>
               </Flex>
@@ -65,7 +91,7 @@ export const Today = ({ weatherInfo }: TodayProps) => {
                   alignItems: 'center',
                   gap: '1rem',
                   borderRadius: '25px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
                   backdropFilter: 'blur(20px)',
                 }}
               >
@@ -84,8 +110,8 @@ export const Today = ({ weatherInfo }: TodayProps) => {
                   alignItems: 'center',
                   gap: '1rem',
                   borderRadius: '25px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(5px)',
+                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                  backdropFilter: 'blur(10px)',
                 }}
               >
                 <IconWind color="white" />
@@ -104,8 +130,8 @@ export const Today = ({ weatherInfo }: TodayProps) => {
                   alignItems: 'center',
                   gap: '1rem',
                   borderRadius: '25px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(5px)',
+                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                  backdropFilter: 'blur(10px)',
                 }}
               >
                 <IconUvIndex color="white" />
@@ -123,8 +149,8 @@ export const Today = ({ weatherInfo }: TodayProps) => {
                   alignItems: 'center',
                   gap: '1rem',
                   borderRadius: '25px',
-                  backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(5px)',
+                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
+                  backdropFilter: 'blur(10px)',
                 }}
               >
                 <IconEyeCheck color="white" />
