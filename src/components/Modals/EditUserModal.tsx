@@ -52,9 +52,6 @@ export const EditUserModal = ({ ...props }: EditUserModalProps) => {
     setAnchor([Number(lat), Number(long)]);
   }, []);
 
-  console.log(anchor);
-  console.log(form.values);
-
   const handleDiscardChanges = () => {
     onClose();
     notifications.show({

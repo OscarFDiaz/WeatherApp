@@ -10,6 +10,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin, IconPencil, IconTrash } from '@tabler/icons-react';
 import { DeleteUserModal, EditUserModal } from '..';
+import { Link } from 'react-router-dom';
 
 interface Props {
   avatar: string;
@@ -59,9 +60,11 @@ export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
         </Flex>
 
         <Flex gap={'xs'} align={'center'} mt={'lg'}>
-          <Button variant="default" fullWidth radius={'xl'}>
-            Detalles
-          </Button>
+          <Link to={`/user/${id}`} style={{ textDecoration: 'none' }}>
+            <Button variant="default" fullWidth radius={'xl'}>
+              Detalles
+            </Button>
+          </Link>
           <ActionIconGroup>
             <ActionIcon
               variant="subtle"

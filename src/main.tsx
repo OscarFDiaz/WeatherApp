@@ -8,6 +8,7 @@ import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 import '@mantine/notifications/styles.css';
 import './styles/PigeoMapOverride.css';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -18,8 +19,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         primaryColor: 'blue',
       }}
     >
-      <Notifications />
-      <App />
+      <BrowserRouter>
+        <Notifications />
+        <App />
+      </BrowserRouter>
     </MantineProvider>
   </React.StrictMode>,
 );

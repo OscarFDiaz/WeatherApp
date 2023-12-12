@@ -1,12 +1,11 @@
 import { Container } from '@mantine/core';
-import { Home, User } from './pages';
+import { AppRouter } from './router/AppRouter';
 
 function App() {
   return (
     <>
       <Container size={'lg'}>
-        {/* <Home /> */}
-        <User />
+        <AppRouter />
       </Container>
     </>
   );
