@@ -54,13 +54,13 @@ export const UserInfo = ({ avatar, user, lat, long, id }: Props) => {
         </Text>
         <Flex gap={'xs'} align={'center'} justify={'center'}>
           <IconMapPin style={{ width: '1rem', height: '1rem' }} stroke={1.5} />
-          <Text ta="center" c="dimmed" fz="sm">
+          <Text ta="center" c="dimmed" fz="sm" truncate={'end'}>
             {lat}, {long}
           </Text>
         </Flex>
 
         <Flex gap={'xs'} align={'center'} mt={'lg'}>
-          <Link to={`/user/${id}`} style={{ textDecoration: 'none' }}>
+          <Link to={`/user/${id}`} style={{ textDecoration: 'none', width: '100%' }}>
             <Button variant="default" fullWidth radius={'xl'}>
               Detalles
             </Button>
