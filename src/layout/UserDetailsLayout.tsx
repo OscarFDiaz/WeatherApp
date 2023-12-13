@@ -1,12 +1,10 @@
 import { Grid, GridCol, Text } from '@mantine/core';
 import { Forecast, MapForecast, Today, UserForecast } from '../components';
-import { IWeather } from '../interfaces/IWeather';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { getWeatherData } from '../helpers/getWeatherData';
-import { notifications } from '@mantine/notifications';
 import { RootState } from '../redux/store';
+import { getEnvironments } from '../helpers/getEnviroments';
+import { useGetWeatherQuery } from '../redux/api/weatherApi';
 
 export const UserDetailsLayout = () => {
   const { id } = useParams();
@@ -15,25 +13,9 @@ export const UserDetailsLayout = () => {
 
   const lat = users[userID].lat;
   const long = users[userID].long;
+  const { VITE_APIKEY: key } = getEnvironments();
 
-  const [data, setData] = useState<IWeather | undefined>(undefined);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getWeatherData({ lat, long });
-        setData(result);
-      } catch (error) {
-        console.error('Error al obtener datos:', error);
-        notifications.show({
-          title: 'Error al hacer la solicitud a la API',
-          message: `Error: ${error}`,
-        });
-      }
-    };
-
-    fetchData();
-  }, [lat, long, userID]);
+  const { data } = useGetWeatherQuery({ lat, long, key });
 
   return (
     <>

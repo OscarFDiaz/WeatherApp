@@ -28,6 +28,7 @@ export const Today = ({ weatherInfo }: TodayProps) => {
       fog: 'https://i.imgur.com/pRwAZLs.jpg',
       mist: 'https://i.imgur.com/pRwAZLs.jpg',
       rain: 'https://i.imgur.com/D3B3Rkn.jpg',
+      drizzle: 'https://i.imgur.com/D3B3Rkn.jpg',
       snow: 'https://i.imgur.com/VzNafkc.jpg',
     };
 
