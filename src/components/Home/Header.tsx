@@ -1,9 +1,10 @@
 import { Container, Flex, Image, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-import AppIcon from '/vite.svg';
-import styles from '../../styles/Header.module.css';
 import { AddUserButton, NewUserModal, ThemeSelector } from '..';
+
+import styles from '../../styles/Header.module.css';
+import AppIcon from '/vite.svg';
 
 export const Header = () => {
   // Manage modal
@@ -12,7 +13,6 @@ export const Header = () => {
   return (
     <>
       <NewUserModal opened={opened} onClose={close} />
-
       <header className={styles.header}>
         <Container className={styles.inner} fluid>
           <Flex

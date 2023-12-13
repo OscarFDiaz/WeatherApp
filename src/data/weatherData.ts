@@ -1,3 +1,4 @@
+// EXAMPLE DATA
 export const weatherData = {
   location: {
     name: 'Monterrey',

@@ -10,6 +10,8 @@ import {
   Space,
   rem,
 } from '@mantine/core';
+import { notifications } from '@mantine/notifications';
+
 import {
   IconUser,
   IconUserPlus,
@@ -18,9 +20,8 @@ import {
 } from '@tabler/icons-react';
 
 import { useFormAddUser } from '../../hooks/useFormAddUser';
-import { ImageSelect, MapContainer } from '..';
-import { notifications } from '@mantine/notifications';
 import { IFormValues } from '../../interfaces/IFormValues';
+import { ImageSelect, MapContainer } from '..';
 
 interface INewUserModal {
   opened: boolean;
@@ -64,7 +65,7 @@ export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
     >
       <form onSubmit={form.onSubmit((values) => handleSubmitUser(values))}>
         <Grid>
-          {/* Usuario y avatar */}
+          {/* name and avatar */}
           <GridCol span={{ sm: 6, xs: 12 }}>
             <TextInput
               description="Nombre del usuario"
@@ -84,7 +85,7 @@ export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
             </Container>
           </GridCol>
 
-          {/* Latitud y longitud */}
+          {/* Latitude y longitude */}
           <GridCol span={{ sm: 6, xs: 12 }}>
             <TextInput
               description="Coordenadas Latitud"
@@ -111,7 +112,7 @@ export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
             />
           </GridCol>
 
-          {/* Mapa */}
+          {/* Map */}
           <GridCol span={12}>
             <Container style={{ height: '100%', minWidth: '100%' }} p={0} m={0}>
               <Text c={'dimmed'} size="sm">
@@ -125,7 +126,7 @@ export const NewUserModal = ({ opened, onClose }: INewUserModal) => {
             </Container>
           </GridCol>
 
-          {/* Botón */}
+          {/* Button */}
           <GridCol span={12}>
             <Button
               fullWidth

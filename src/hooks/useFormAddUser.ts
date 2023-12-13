@@ -9,9 +9,6 @@ export const useFormAddUser = () => {
   // Map anchor
   const [anchor, setAnchor] = useState<[number, number]>([20.6721374, -103.3258491]);
 
-  // Form values
-  const [, setSubmittedValues] = useState('');
-
   const form = useForm({
     initialValues: {
       name: '',
@@ -65,7 +62,6 @@ export const useFormAddUser = () => {
   const dispatch = useDispatch();
   const { idCount } = useSelector((state: RootState) => state.user);
   const handleSubmit = (values: IFormValues) => {
-    setSubmittedValues(JSON.stringify(values));
     const newData = {
       id: idCount,
       ...values,
@@ -75,7 +71,6 @@ export const useFormAddUser = () => {
 
   // Submit Edit Form
   const handleEditSubmit = (values: IFormValues, id: number) => {
-    setSubmittedValues(JSON.stringify(values));
     const newData = {
       id: id,
       ...values,

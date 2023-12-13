@@ -1,8 +1,10 @@
-import { GridCol, Text } from '@mantine/core';
-import { MapContainer } from '..';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import { GridCol, Text } from '@mantine/core';
+
 import { RootState } from '../../redux/store';
+import { MapContainer } from '..';
 
 export const MapForecast = () => {
   const { id } = useParams();
@@ -13,7 +15,11 @@ export const MapForecast = () => {
   const long = Number(users[userID].long);
 
   return (
-    <GridCol span={{ xl: 6, lg: 6, md: 6, sm: 12, xs: 12 }} m={0} mih={350}>
+    <GridCol
+      span={{ xl: 6, lg: 6, md: 6, sm: 12, xs: 12 }}
+      mt={{ md: 0, xs: 24 }}
+      mih={350}
+    >
       <Text>Ubicación</Text>
       <MapContainer
         height="100%"

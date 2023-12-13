@@ -1,6 +1,7 @@
 import { Flex, GridCol, Image, Paper, Text } from '@mantine/core';
-import { IWeather } from '../../interfaces/IWeather';
+
 import { SkeletonForecastLayout } from '../../layout/SkeletonForecastLayout';
+import { IWeather } from '../../interfaces/IWeather';
 
 interface ForecastProps {
   weatherInfo: IWeather | undefined;

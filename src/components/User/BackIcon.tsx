@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 export const BackIcon = () => {
   const navigate = useNavigate();
-
   const onNavigateBack = () => {
     navigate(-1);
   };
+
   return (
     <Button
       radius={'xl'}
       onClick={onNavigateBack}
       variant="default"
       size="md"
-      aria-label="Toggle color scheme"
+      aria-label="Navigate back"
     >
       <IconArrowNarrowLeft stroke={1.5} />
       <Text ml={16}>Volver</Text>

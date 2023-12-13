@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   ActionIcon,
   ActionIconGroup,
@@ -8,10 +10,11 @@ import {
   Text,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+
 import { IconMapPin, IconPencil, IconTrash } from '@tabler/icons-react';
-import { DeleteUserModal, EditUserModal } from '..';
-import { Link } from 'react-router-dom';
+
 import { User } from '../../interfaces/IUser';
+import { DeleteUserModal, EditUserModal } from '..';
 
 export const UserInfo = ({ avatar, name, lat, long, id }: User) => {
   // Manage modal

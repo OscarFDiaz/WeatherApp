@@ -7,14 +7,15 @@ import { getEnvironments } from '../helpers/getEnviroments';
 import { useGetWeatherQuery } from '../redux/api/weatherApi';
 
 export const UserDetailsLayout = () => {
+  // Search index on the users store to get que data from that user
   const { id } = useParams();
   const { users } = useSelector((state: RootState) => state.user);
   const userID = users.findIndex((user) => user.id == Number(id));
 
+  // All to get data from RTKQuery
   const lat = users[userID].lat;
   const long = users[userID].long;
   const { VITE_APIKEY: key } = getEnvironments();
-
   const { data } = useGetWeatherQuery({ lat, long, key });
 
   return (

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
-import { Flex, Grid, GridCol, Text } from '@mantine/core';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { IUserSlice } from '../../interfaces/IUserSlice';
+import { Flex, Grid, GridCol, Text } from '@mantine/core';
+
 import { setUsers } from '../../redux/slices/userSlice';
+import { RootState } from '../../redux/store';
+
 import { usersDefault } from '../../data/usersDefault';
 import { UserInfo } from './UserInfo';
-import { RootState } from '../../redux/store';
 
 export const UsersList = () => {
   // Load users from store

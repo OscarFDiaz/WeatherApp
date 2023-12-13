@@ -1,5 +1,5 @@
-import { Footer, HeaderUser } from '../../components';
-import { UserDetailsLayout } from '../../layout';
+import { Footer, HeaderUser } from '../components';
+import { UserDetailsLayout } from '../layout';
 export const User = () => {
   return (
     <>

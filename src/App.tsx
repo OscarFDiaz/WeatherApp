@@ -3,11 +3,9 @@ import { AppRouter } from './router/AppRouter';
 
 function App() {
   return (
-    <>
-      <Container size={'lg'}>
-        <AppRouter />
-      </Container>
-    </>
+    <Container size={'lg'}>
+      <AppRouter />
+    </Container>
   );
 }
 

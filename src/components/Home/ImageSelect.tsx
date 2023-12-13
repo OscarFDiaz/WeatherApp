@@ -1,6 +1,7 @@
+import { UseFormReturnType } from '@mantine/form';
 import { Avatar, Flex, Select } from '@mantine/core';
 import { IconUserCircle } from '@tabler/icons-react';
-import { UseFormReturnType } from '@mantine/form';
+
 import { avatarsData } from '../../data/avatarsData';
 
 interface Props {

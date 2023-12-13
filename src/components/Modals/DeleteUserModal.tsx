@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+
 import {
   Avatar,
   Button,
@@ -10,9 +12,10 @@ import {
   rem,
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+
 import { IconCheck, IconMapPin, IconUserMinus } from '@tabler/icons-react';
+
 import { IDeleteUserModal } from '../../interfaces/IDeleteUserModal';
-import { useDispatch } from 'react-redux';
 import { deleteUserById } from '../../redux/slices/userSlice';
 
 export const DeleteUserModal = ({ ...props }: IDeleteUserModal) => {

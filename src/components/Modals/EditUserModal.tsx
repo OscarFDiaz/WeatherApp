@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
+
 import {
   Button,
   Container,
@@ -11,6 +13,7 @@ import {
   rem,
 } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
+
 import {
   IconInfoCircle,
   IconUser,
@@ -18,12 +21,14 @@ import {
   IconWorldLatitude,
   IconWorldLongitude,
 } from '@tabler/icons-react';
+
 import { useFormAddUser } from '../../hooks/useFormAddUser';
-import { ImageSelect } from '../Home/ImageSelect';
-import { MapContainer } from '../MapContainer';
-import { useEffect } from 'react';
+
 import { IEditUserModal } from '../../interfaces/IEditUserModal';
 import { IFormValues } from '../../interfaces/IFormValues';
+
+import { ImageSelect } from '../Home/ImageSelect';
+import { MapContainer } from '../MapContainer';
 
 export const EditUserModal = ({ ...props }: IEditUserModal) => {
   const { opened, onClose, avatar, id, lat, long, name } = props;
@@ -39,6 +44,7 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
     setAnchor([Number(lat), Number(long)]);
   }, []);
 
+  // Handle user discard changes when edit
   const handleDiscardChanges = () => {
     onClose();
     notifications.show({
@@ -91,7 +97,7 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
             </Text>
           </GridCol>
 
-          {/* Usuario y avatar */}
+          {/* Name and avatar*/}
           <GridCol span={{ sm: 6, xs: 12 }}>
             <TextInput
               description="Nombre del usuario"
@@ -111,7 +117,7 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
             </Container>
           </GridCol>
 
-          {/* Latitud y longitud */}
+          {/* Latitude y longitude */}
           <GridCol span={{ sm: 6, xs: 12 }}>
             <TextInput
               description="Coordenadas Latitud"
@@ -138,7 +144,7 @@ export const EditUserModal = ({ ...props }: IEditUserModal) => {
             />
           </GridCol>
 
-          {/* Mapa */}
+          {/* Map */}
           <GridCol span={12}>
             <Container style={{ height: '100%', minWidth: '100%' }} p={0} m={0}>
               <Text c={'dimmed'} size="sm">

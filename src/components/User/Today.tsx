@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   BackgroundImage,
   Box,
@@ -9,9 +10,10 @@ import {
   Text,
 } from '@mantine/core';
 import { IconDroplet, IconEyeCheck, IconUvIndex, IconWind } from '@tabler/icons-react';
+
 import { IWeather } from '../../interfaces/IWeather';
 import { SkeletonDayLayout } from '../../layout/SkeletonDayLayout';
-import { useEffect, useState } from 'react';
+import { BoxWeatherInfo } from '..';
 
 interface TodayProps {
   weatherInfo: IWeather | undefined;
@@ -59,7 +61,7 @@ export const Today = ({ weatherInfo }: TodayProps) => {
           h={'100%'}
         >
           <Grid p={'lg'}>
-            {/* Hora y ciudad */}
+            {/* Time and city*/}
             <GridCol span={12}>
               <Flex direction={'row'} align={'center'} justify={'space-between'}>
                 <Text c={'white'}>{weatherInfo.location.localtime.split(' ')[0]}</Text>
@@ -68,9 +70,9 @@ export const Today = ({ weatherInfo }: TodayProps) => {
                 </Text>
               </Flex>
             </GridCol>
-            {/* Icono */}
+            {/* Icon */}
             <GridCol span={12} mb={'xl'}>
-              {/* Temperatura - Icono*/}
+              {/* Temperature - Icon*/}
               <Flex direction={'row'} align={'center'} justify={'space-between'}>
                 <Text c={'white'} size="64px" fw={600}>
                   {weatherInfo.current.temp_c} °C
@@ -85,83 +87,33 @@ export const Today = ({ weatherInfo }: TodayProps) => {
             </GridCol>
 
             <Flex gap={'md'} direction={'column'}>
-              {/* Humedad */}
-              <Box
-                display={'flex'}
-                style={{
-                  alignItems: 'center',
-                  gap: '1rem',
-                  borderRadius: '25px',
-                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(20px)',
-                }}
-              >
-                <IconDroplet color="white" />
-                <Text size="lg" c={'dimmed'}>
-                  Humedad
-                </Text>
-                <Text c={'white'} size="xl" fw={600}>
-                  {weatherInfo.current.humidity} %
-                </Text>
-              </Box>
-              {/* Viento */}
-              <Box
-                display={'flex'}
-                style={{
-                  alignItems: 'center',
-                  gap: '1rem',
-                  borderRadius: '25px',
-                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <IconWind color="white" />
-                <Text size="lg" c={'dimmed'}>
-                  Viento
-                </Text>
-                <Text c={'white'} size="xl" fw={600}>
-                  {weatherInfo.current.wind_kph} KM/H - {weatherInfo.current.wind_dir}/
-                  {weatherInfo.current.wind_degree} °
-                </Text>
-              </Box>
+              {/* humidity */}
+              <BoxWeatherInfo
+                children={<IconDroplet color="white" />}
+                data={String(weatherInfo.current.humidity)}
+                text={'Humedad'}
+                decorator="%"
+              />
+              {/* wind */}
+              <BoxWeatherInfo
+                children={<IconWind color="white" />}
+                data={`${weatherInfo.current.wind_kph} KM/H - ${weatherInfo.current.wind_dir}/
+                ${weatherInfo.current.wind_degree} °`}
+                text={'Viento'}
+              />
               {/* UV */}
-              <Box
-                display={'flex'}
-                style={{
-                  alignItems: 'center',
-                  gap: '1rem',
-                  borderRadius: '25px',
-                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <IconUvIndex color="white" />
-                <Text size="lg" c={'dimmed'}>
-                  UV Indice
-                </Text>
-                <Text c={'white'} size="xl" fw={600}>
-                  {weatherInfo.current.uv}
-                </Text>
-              </Box>
-              {/* UV */}
-              <Box
-                display={'flex'}
-                style={{
-                  alignItems: 'center',
-                  gap: '1rem',
-                  borderRadius: '25px',
-                  // backgroundColor: 'rgba(0, 0, 0, 0.30)',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <IconEyeCheck color="white" />
-                <Text size="lg" c={'dimmed'}>
-                  Visibilidad
-                </Text>
-                <Text c={'white'} size="xl" fw={600}>
-                  {weatherInfo.current.vis_km} KM
-                </Text>
-              </Box>
+              <BoxWeatherInfo
+                children={<IconUvIndex color="white" />}
+                data={String(weatherInfo.current.uv)}
+                text={'UV Indice'}
+              />
+              {/* Visibility */}
+              <BoxWeatherInfo
+                children={<IconEyeCheck color="white" />}
+                data={String(weatherInfo.current.vis_km)}
+                text={'Visibilidad'}
+                decorator="KM"
+              />
             </Flex>
           </Grid>
         </BackgroundImage>

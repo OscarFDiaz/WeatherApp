@@ -1,4 +1,4 @@
-import { Footer, Header, UsersList } from '../../components';
+import { Footer, Header, UsersList } from '../components';
 
 export const Home = () => {
   return (

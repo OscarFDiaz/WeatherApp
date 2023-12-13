@@ -1,7 +1,10 @@
-import { Avatar, Flex, GridCol, Paper, Text } from '@mantine/core';
-import { IconMapPin } from '@tabler/icons-react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import { Avatar, Flex, GridCol, Paper, Text } from '@mantine/core';
+
+import { IconMapPin } from '@tabler/icons-react';
+
 import { RootState } from '../../redux/store';
 
 export const UserForecast = () => {
