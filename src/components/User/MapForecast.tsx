@@ -2,12 +2,12 @@ import { GridCol, Text } from '@mantine/core';
 import { MapContainer } from '..';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IUserSlice } from '../../interfaces/IUserSlice';
+import { RootState } from '../../redux/store';
 
 export const MapForecast = () => {
   const { id } = useParams();
-  const { users } = useSelector((state: IUserSlice) => state.user);
-  const userID = Number(id) - 1 || 0;
+  const { users } = useSelector((state: RootState) => state.user);
+  const userID = users.findIndex((user) => user.id == Number(id));
 
   const lat = Number(users[userID].lat);
   const long = Number(users[userID].long);

@@ -3,15 +3,15 @@ import { Forecast, MapForecast, Today, UserForecast } from '../components';
 import { IWeather } from '../interfaces/IWeather';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IUserSlice } from '../interfaces/IUserSlice';
 import { useEffect, useState } from 'react';
 import { getWeatherData } from '../helpers/getWeatherData';
 import { notifications } from '@mantine/notifications';
+import { RootState } from '../redux/store';
 
 export const UserDetailsLayout = () => {
   const { id } = useParams();
-  const { users } = useSelector((state: IUserSlice) => state.user);
-  const userID = Number(id) - 1 || 0;
+  const { users } = useSelector((state: RootState) => state.user);
+  const userID = users.findIndex((user) => user.id == Number(id));
 
   const lat = users[userID].lat;
   const long = users[userID].long;

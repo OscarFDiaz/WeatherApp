@@ -1,13 +1,13 @@
 import { Avatar, Flex, GridCol, Paper, Text } from '@mantine/core';
 import { IconMapPin } from '@tabler/icons-react';
 import { useParams } from 'react-router-dom';
-import { IUserSlice } from '../../interfaces/IUserSlice';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 export const UserForecast = () => {
   const { id } = useParams();
-  const { users } = useSelector((state: IUserSlice) => state.user);
-  const userID = Number(id) - 1 || 0;
+  const { users } = useSelector((state: RootState) => state.user);
+  const userID = users.findIndex((user) => user.id == Number(id));
 
   return (
     <GridCol span={{ xl: 6, lg: 6, md: 6, sm: 12, xs: 12 }} p={8} m={0}>
