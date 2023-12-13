@@ -5,6 +5,7 @@ interface UserState {
   users: User[];
   count: number;
   idCount: number;
+  dirty: boolean;
 }
 
 export const userSlice = createSlice({
@@ -13,14 +14,17 @@ export const userSlice = createSlice({
     users: [],
     count: 0,
     idCount: 0,
+    dirty: false,
   } as UserState,
   reducers: {
     setUser: (state, action) => {
       state.count++;
       state.idCount++;
+      state.dirty = true;
       state.users.push(action.payload);
     },
     setUsers: (state, action) => {
+      state.dirty = true;
       state.count = action.payload.length;
       state.idCount = action.payload.length + 1;
       state.users = action.payload;

@@ -1,43 +1,54 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Flex, Grid, GridCol, Text } from '@mantine/core';
+import { Box, Grid, GridCol, Notification, Text } from '@mantine/core';
 
 import { setUsers } from '../../redux/slices/userSlice';
 import { RootState } from '../../redux/store';
 
 import { usersDefault } from '../../data/usersDefault';
 import { UserInfo } from './UserInfo';
+import { IconUserSearch } from '@tabler/icons-react';
 
 export const UsersList = () => {
-  // Load users from store
-  const { users } = useSelector((state: RootState) => state.user);
+  // Load users from store, dirty means if user delete or add one user
+  const { users, dirty, count } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (users.length === 0) dispatch(setUsers(usersDefault));
-  });
+  if (!dirty) {
+    if (count === 0) dispatch(setUsers(usersDefault));
+  } else {
+    if (count === 0) {
+      return (
+        <Notification
+          icon={<IconUserSearch />}
+          color="teal"
+          title="No hay usuarios registrados"
+          withCloseButton={false}
+        >
+          Añade nuevos usuarios pulsando 'Añadir usuario'
+        </Notification>
+      );
+    }
+  }
 
   return (
-    <>
+    <Box>
       <Text fz={24} mb={16}>
         Usuarios registrados
       </Text>
-      <Flex gap={'lg'} wrap={'wrap'} justify={'flex-start'}>
-        <Grid>
-          {users.map((user) => (
-            <GridCol key={user.id} span={{ xl: 4, md: 6, xs: 6, base: 12 }}>
-              <UserInfo
-                avatar={user.avatar}
-                name={user.name}
-                lat={user.lat}
-                long={user.long}
-                id={user.id}
-              />
-            </GridCol>
-          ))}
-        </Grid>
-      </Flex>
-    </>
+      <Grid>
+        {users.map((user) => (
+          <GridCol key={user.id} span={{ xl: 4, lg: 4, md: 4, xs: 6, base: 12 }}>
+            <UserInfo
+              avatar={user.avatar}
+              name={user.name}
+              lat={user.lat}
+              long={user.long}
+              id={user.id}
+            />
+          </GridCol>
+        ))}
+      </Grid>
+    </Box>
   );
 };

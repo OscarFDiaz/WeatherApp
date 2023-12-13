@@ -5,7 +5,13 @@ import AppIcon from '/vite.svg';
 
 export const Footer = () => {
   return (
-    <Flex mt={'xl'} pb={'xl'} gap={'lg'} justify={'space-between'}>
+    <Flex
+      mt={'xl'}
+      pb={'xl'}
+      gap={'lg'}
+      justify={'space-between'}
+      style={{ width: '100%' }}
+    >
       <Flex direction={'row'} gap={'lg'} justify={'center'} align={'center'}>
         <Image src={AppIcon} alt="WeatherIcon" style={{ width: '45px' }} />
         <Title
