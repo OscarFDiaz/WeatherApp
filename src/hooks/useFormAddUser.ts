@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, updateUser } from '../redux/slices/userSlice';
 import { IFormValues } from '../interfaces/IFormValues';
-import { IUserSlice } from '../interfaces/IUserSlice';
+import { RootState } from '../redux/store';
 
 export const useFormAddUser = () => {
   // Map anchor
@@ -63,7 +63,7 @@ export const useFormAddUser = () => {
 
   // Submit New User Form
   const dispatch = useDispatch();
-  const { idCount } = useSelector((state: IUserSlice) => state.user);
+  const { idCount } = useSelector((state: RootState) => state.user);
   const handleSubmit = (values: IFormValues) => {
     setSubmittedValues(JSON.stringify(values));
     const newData = {

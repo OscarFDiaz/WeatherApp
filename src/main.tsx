@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import { store } from './redux/store.ts';
+import { persistor, store } from './redux/store.ts';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
@@ -22,10 +23,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       }}
     >
       <Provider store={store}>
-        <HashRouter>
-          <Notifications />
-          <App />
-        </HashRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <HashRouter>
+            <Notifications />
+            <App />
+          </HashRouter>
+        </PersistGate>
       </Provider>
     </MantineProvider>
   </React.StrictMode>,
