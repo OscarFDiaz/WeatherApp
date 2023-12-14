@@ -113,6 +113,7 @@ Y deja correr los test
 ![TestCy](https://github.com/OscarFDiaz/WeatherApp/assets/9502714/1b3b8eb0-899d-438d-bab5-64c995453509)
 ![TestCy1](https://github.com/OscarFDiaz/WeatherApp/assets/9502714/6a0460c8-5710-4e4f-9b17-20199694568f)
 
+![GifTest](https://github.com/OscarFDiaz/WeatherApp/assets/9502714/56ae1e61-d88b-4572-a28b-ca5688223e4e)
 
 
 ## Online
